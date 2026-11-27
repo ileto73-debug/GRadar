@@ -1,0 +1,38 @@
+[
+ {
+  "outlet": "bTV Media Group (bTV)",
+  "kind": "Национална телевизия",
+  "owner": "Central European Media Enterprises, собственост на PPF Group (Чехия)",
+  "owner_type": "Частна, чуждестранна",
+  "data_year": "2025",
+  "note": "Заедно с групата на NOVA привлича над 90% от брутните рекламни бюджети за телевизия",
+  "url": "https://www.bta.bg/bg/news/920965-bi-ti-vi-shte-bade-s-nova-viziya-ot-1-yuli"
+ },
+ {
+  "outlet": "Nova Broadcasting Group (NOVA)",
+  "kind": "Национална телевизия",
+  "owner": "United Group (купена от „Адванс медиа груп“ на братя Домусчиеви през 2020–2021 г.)",
+  "owner_type": "Частна, чуждестранна",
+  "data_year": "2021",
+  "note": "Собствеността не е проверена за 2026 г. – нужна е справка в Търговския регистър",
+  "url": "https://www.capital.bg/biznes/kompanii/2020/12/11/4150964_domuschiev_prodava_nova_tv_na_sobstvenika_na_btk/"
+ },
+ {
+  "outlet": "БНТ",
+  "kind": "Обществена телевизия",
+  "owner": "Държавата (бюджетна субсидия)",
+  "owner_type": "Обществена",
+  "data_year": "2026",
+  "note": "Сред най-доверените източници, но независимостта ѝ е ограничена от недостиг на средства и политически натиск (Съвет на Европа)",
+  "url": "https://sofiaglobe.com/2026/03/03/coe-bulgaria-remains-challenging-environment-for-independent-journalism/"
+ },
+ {
+  "outlet": "БНР",
+  "kind": "Обществено радио",
+  "owner": "Държавата (бюджетна субсидия)",
+  "owner_type": "Обществена",
+  "data_year": "2026",
+  "note": "Същата оценка като за БНТ (Съвет на Европа)",
+  "url": "https://sofiaglobe.com/2026/03/03/coe-bulgaria-remains-challenging-environment-for-independent-journalism/"
+ }
+]

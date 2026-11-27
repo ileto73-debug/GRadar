@@ -1,0 +1,93 @@
+[
+ {
+  "id": "deficit_2025",
+  "indicator": "Бюджетен дефицит (ЕСС 2010)",
+  "value": 3.5,
+  "unit": "% от БВП",
+  "period": "2025 г., факт",
+  "limit": 3.0,
+  "warn": 2.5,
+  "rule": "max",
+  "limit_label": "Таван по Пакта за стабилност и растеж",
+  "source": "Евростат / Съвет на ЕС",
+  "url": "https://data.consilium.europa.eu/doc/document/ST-10952-2026-INIT/en/pdf"
+ },
+ {
+  "id": "deficit_2026",
+  "indicator": "Дефицит 2026 – цел на правителството",
+  "value": 5.0,
+  "unit": "% от БВП",
+  "period": "2026 г., писмо до ЕК от 2.11.2026",
+  "limit": 3.0,
+  "warn": 2.5,
+  "rule": "max",
+  "limit_label": "Таван по Пакта за стабилност и растеж",
+  "source": "Reuters (чрез Devdiscourse)",
+  "url": "https://www.devdiscourse.com/article/international/4002803-bulgaria-revises-2027-deficit-target-as-eu-pressure-mounts"
+ },
+ {
+  "id": "debt_2025",
+  "indicator": "Държавен дълг",
+  "value": 29.9,
+  "unit": "% от БВП",
+  "period": "2025 г., факт",
+  "limit": 60.0,
+  "warn": 50.0,
+  "rule": "max",
+  "limit_label": "Таван по Договора за ЕС",
+  "source": "НСИ",
+  "url": "https://www.nsi.bg/en/press-release/notifikacionni-tablici-za-dalga-i-deficita-na-sektor-darjavno-upravlenie-8995"
+ },
+ {
+  "id": "hicp",
+  "indicator": "Инфлация (ХИПЦ)",
+  "value": 5.9,
+  "unit": "% на год. база",
+  "period": "октомври 2026",
+  "limit": 2.0,
+  "warn": null,
+  "rule": "max",
+  "limit_label": "Цел на ЕЦБ за еврозоната",
+  "source": "НСИ (чрез Agrozona.bg)",
+  "url": "https://agrozona.bg/nsi-inflatsiyata-v-balgariya-dostigna-6-na-godishna-baza-prez-oktomvri/"
+ },
+ {
+  "id": "gdp",
+  "indicator": "Растеж на БВП",
+  "value": 2.5,
+  "unit": "% на год. база",
+  "period": "III тримесечие 2026",
+  "limit": 0.0,
+  "warn": 1.0,
+  "rule": "min",
+  "limit_label": "Под 0 = спад на икономиката",
+  "source": "НСИ (чрез БТА)",
+  "url": "https://www.bta.bg/bg/news/economy/1246206-bvp-na-balgariya-narastva-s-2-5-na-sto-prez-tretoto-trimesechie-na-2026-g-na-go"
+ },
+ {
+  "id": "unemployment",
+  "indicator": "Безработица",
+  "value": 3.6,
+  "unit": "%",
+  "period": "юли 2026",
+  "limit": 6.1,
+  "warn": 5.0,
+  "rule": "max",
+  "limit_label": "Средно за ЕС (юли 2026)",
+  "source": "Евростат (чрез Sofia Globe)",
+  "url": "https://sofiaglobe.com/?p=128813"
+ },
+ {
+  "id": "defence",
+  "indicator": "Разходи за отбрана",
+  "value": 2.14,
+  "unit": "% от БВП",
+  "period": "2025 г.",
+  "limit": 2.0,
+  "warn": 2.2,
+  "rule": "min",
+  "limit_label": "Минимум на НАТО",
+  "source": "Доклад на генералния секретар на НАТО (чрез БТА)",
+  "url": "https://www.bta.bg/en/news/world/1092516?download=1"
+ }
+]

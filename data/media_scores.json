@@ -1,0 +1,72 @@
+[
+ {
+  "id": "rsf_rank",
+  "label": "Място в Индекса за свобода на пресата",
+  "value": 71.0,
+  "unit": "от 180",
+  "period": "2026 (2025: 70)",
+  "group": "rsf",
+  "source": "Репортери без граници (по Economic.bg)",
+  "url": "https://www.economic.bg/en/a/view/bulgaria-has-fallen-to-71st-place-in-press-freedom-rankings"
+ },
+ {
+  "id": "rsf_score",
+  "label": "Оценка в Индекса за свобода на пресата",
+  "value": 60.28,
+  "unit": "точки от 100",
+  "period": "2026 (2025: 60,78)",
+  "group": "rsf",
+  "source": "Репортери без граници (по Economic.bg)",
+  "url": "https://www.economic.bg/en/a/view/bulgaria-has-fallen-to-71st-place-in-press-freedom-rankings"
+ },
+ {
+  "id": "mpm_total",
+  "label": "Общ риск за медийния плурализъм",
+  "value": 64.0,
+  "unit": "%",
+  "period": "2026",
+  "group": "mpm",
+  "source": "Media Pluralism Monitor (EUI)",
+  "url": "https://cmpf.eui.eu/country/bulgaria/"
+ },
+ {
+  "id": "mpm_market",
+  "label": "Пазарна плуралистичност",
+  "value": 79.0,
+  "unit": "%",
+  "period": "2026",
+  "group": "mpm_area",
+  "source": "Media Pluralism Monitor (EUI)",
+  "url": "https://cmpf.eui.eu/country/bulgaria/"
+ },
+ {
+  "id": "mpm_social",
+  "label": "Социално приобщаване",
+  "value": 69.0,
+  "unit": "%",
+  "period": "2026",
+  "group": "mpm_area",
+  "source": "Media Pluralism Monitor (EUI)",
+  "url": "https://cmpf.eui.eu/country/bulgaria/"
+ },
+ {
+  "id": "mpm_fundamental",
+  "label": "Основни гаранции",
+  "value": 54.0,
+  "unit": "%",
+  "period": "2026",
+  "group": "mpm_area",
+  "source": "Media Pluralism Monitor (EUI)",
+  "url": "https://cmpf.eui.eu/country/bulgaria/"
+ },
+ {
+  "id": "mpm_political",
+  "label": "Политическа независимост",
+  "value": 54.0,
+  "unit": "%",
+  "period": "2026",
+  "group": "mpm_area",
+  "source": "Media Pluralism Monitor (EUI)",
+  "url": "https://cmpf.eui.eu/country/bulgaria/"
+ }
+]
