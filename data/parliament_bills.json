@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-27T09:34:57+00:00",
+ "checked": "2026-11-27T09:37:57+00:00",
  "source": "https://www.parliament.bg/api/v1/",
  "bills": [
   {
@@ -208,7 +208,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-01-68.rtf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала първо гласуване, 25.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167642"
   },
   {
@@ -228,7 +228,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-01-70.rtf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала първо гласуване, 25.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167644"
   },
   {
@@ -270,7 +270,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-01-71.docx",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала първо гласуване, 25.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167645"
   },
   {
@@ -290,7 +290,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-02-22.rtf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала второ гласуване, 19.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167647"
   },
   {
@@ -371,7 +371,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-01-66.rtf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала първо гласуване, 18.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167636"
   },
   {
@@ -586,7 +586,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-01-59.rtf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала второ гласуване, 26.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167623"
   },
   {
@@ -607,7 +607,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-01-63.rtf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала второ гласуване, 26.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167627"
   },
   {
@@ -628,7 +628,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-01-64.rtf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала второ гласуване, 26.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167628"
   },
   {
@@ -649,7 +649,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-01-65.rtf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала второ гласуване, 26.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167629"
   },
   {
@@ -670,7 +670,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-01-60.rtf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала първо гласуване, 12.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167624"
   },
   {
@@ -692,7 +692,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-01-61.rtf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала първо гласуване, 18.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167625"
   },
   {
@@ -712,7 +712,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-01-62.rtf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала първо гласуване, 18.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167626"
   },
   {
@@ -732,7 +732,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-654-01-171.pdf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала първо гласуване, 18.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167622"
   },
   {
@@ -760,7 +760,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-654-01-170.pdf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала първо гласуване, 19.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167621"
   },
   {
@@ -787,7 +787,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-654-01-169.pdf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала първо гласуване, 18.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167620"
   },
   {
@@ -833,7 +833,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-01-55.rtf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала първо гласуване, 12.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167610"
   },
   {
@@ -878,7 +878,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-01-57.rtf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала първо гласуване, 13.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167612"
   },
   {
@@ -903,7 +903,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-01-58.rtf",
    "adopted": false,
    "dv": null,
-   "stage": "Доклад на комисия",
+   "stage": "Приет – комисии първо гласуване, 18.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167613"
   },
   {
@@ -1037,7 +1037,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-01-53.rtf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала първо гласуване, 19.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167606"
   },
   {
@@ -1056,7 +1056,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-602-01-51.rtf",
    "adopted": false,
    "dv": null,
-   "stage": "Обсъждан в пленарна зала",
+   "stage": "Приет – зала първо гласуване, 18.11.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167604"
   },
   {
@@ -1109,7 +1109,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-653-15-16.pdf",
    "adopted": false,
    "dv": null,
-   "stage": "Доклад на комисия",
+   "stage": "Приет – комисии първо гласуване, 15.10.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167600"
   },
   {
@@ -1128,7 +1128,7 @@
    "pdf": "https://www.parliament.bg/bills/52/52-653-15-17.pdf",
    "adopted": false,
    "dv": null,
-   "stage": "Доклад на комисия",
+   "stage": "Приет – комисии първо гласуване, 15.10.2026",
    "url": "https://www.parliament.bg/bg/bills/ID/167601"
   },
   {
