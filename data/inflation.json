@@ -1,52 +1,62 @@
 [
  {
-  "month": "2026-01",
+  "month": "2025-11",
+  "value": 3.7,
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/default/table"
+ },
+ {
+  "month": "2025-12",
   "value": 3.5,
-  "url": "https://www.nsi.bg/file/34490/inflaciya_i_indeksi_na_potrebitelskite_ceni.pdf"
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/default/table"
+ },
+ {
+  "month": "2026-01",
+  "value": 2.3,
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/default/table"
  },
  {
   "month": "2026-02",
-  "value": 3.3,
-  "url": "https://www.nsi.bg/file/34490/inflaciya_i_indeksi_na_potrebitelskite_ceni.pdf"
+  "value": 2.1,
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/default/table"
  },
  {
   "month": "2026-03",
-  "value": 4.1,
-  "url": "https://www.nsi.bg/file/34971/inflaciya_i_indeksi_na_potrebitelskite_ceni.pdf"
+  "value": 2.8,
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/default/table"
  },
  {
   "month": "2026-04",
-  "value": 6.8,
-  "url": "https://www.nsi.bg/file/35677/inflaciya_i_indeksi_na_potrebitelskite_ceni.pdf"
+  "value": 6.0,
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/default/table"
  },
  {
   "month": "2026-05",
-  "value": 6.9,
-  "url": "https://www.nsi.bg/index.php/file/36159/inflaciya_i_indeksi_na_potrebitelskite_ceni.pdf"
+  "value": 6.3,
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/default/table"
  },
  {
   "month": "2026-06",
-  "value": 5.4,
-  "url": "https://www.nsi.bg/file/36888/inflaciya_i_indeksi_na_potrebitelskite_ceni.pdf"
+  "value": 5.2,
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/default/table"
  },
  {
   "month": "2026-07",
-  "value": 4.5,
-  "url": "https://www.nsi.bg/file/37341/inflaciya_i_indeksi_na_potrebitelskite_ceni.pdf"
+  "value": 4.4,
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/default/table"
  },
  {
   "month": "2026-08",
-  "value": null,
-  "url": ""
+  "value": 5.0,
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/default/table"
  },
  {
   "month": "2026-09",
-  "value": null,
-  "url": ""
+  "value": 5.6,
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/default/table"
  },
  {
   "month": "2026-10",
-  "value": 6.0,
-  "url": "https://news.bg/economics/nsi-izmeri-inflatsiya-ot-1-2-prez-oktomvri.html"
+  "value": 5.9,
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/default/table"
  }
 ]

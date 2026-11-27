@@ -45,13 +45,13 @@
   "indicator": "Инфлация (ХИПЦ)",
   "value": 5.9,
   "unit": "% на год. база",
-  "period": "октомври 2026",
+  "period": "окт 2026, Евростат",
   "limit": 2.0,
   "warn": null,
   "rule": "max",
   "limit_label": "Цел на ЕЦБ за еврозоната",
-  "source": "НСИ (чрез Agrozona.bg)",
-  "url": "https://agrozona.bg/nsi-inflatsiyata-v-balgariya-dostigna-6-na-godishna-baza-prez-oktomvri/",
+  "source": "Евростат (автоматично)",
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/default/table",
   "period_key": "2026-10"
  },
  {
