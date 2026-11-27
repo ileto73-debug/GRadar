@@ -120,7 +120,7 @@ details li{color:var(--muted)}
       <p class="sub" id="nb-sub">Автоматичен списък от parliament.bg за последните 90 дни, без оценка. Законопроектите с голям ефект се оценяват по-горе след преглед.</p>
       <div class="filter"><label for="nb-q">Търси:</label><input id="nb-q" type="search" placeholder="дума от заглавието или вносител" style="font:inherit;font-size:14px;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--fg);flex:1;min-width:0"></div>
       <div class="tw"><table>
-        <thead><tr><th>Дата</th><th>Законопроект</th><th>Вносители</th><th>Комисии</th></tr></thead>
+        <thead><tr><th>Дата</th><th>Законопроект</th><th>Етап</th><th>Вносители</th><th>Комисии</th></tr></thead>
         <tbody id="nb-body"></tbody>
       </table></div>
     </section>
@@ -348,20 +348,21 @@ let nbq = '';
 function renderNewBills() {
   const P = D.parliament_bills, body = $('nb-body');
   if (!P || !P.bills || !P.bills.length) {
-    body.replaceChildren(); const tr = el('tr'); const td = el('td', 'note', 'Списъкът ще се появи след първото автоматично обновяване от parliament.bg.'); td.colSpan = 4; tr.append(td); body.append(tr); return;
+    body.replaceChildren(); const tr = el('tr'); const td = el('td', 'note', 'Списъкът ще се появи след първото автоматично обновяване от parliament.bg.'); td.colSpan = 5; tr.append(td); body.append(tr); return;
   }
   if (P.checked) $('nb-sub').textContent = 'Автоматичен списък от parliament.bg за последните 90 дни, без оценка (проверено: ' + new Date(P.checked).toLocaleString('bg-BG') + '). Законопроектите с голям ефект се оценяват по-горе след преглед.';
   const q = nbq.trim().toLowerCase();
-  const rows = P.bills.filter((b) => !q || [b.title, b.sign, (b.submitters || []).join(' ')].join(' ').toLowerCase().includes(q));
+  const rows = P.bills.filter((b) => !q || [b.title, b.sign, b.stage, (b.submitters || []).join(' ')].join(' ').toLowerCase().includes(q));
   body.replaceChildren(...rows.map((b) => {
     const tr = el('tr');
     tr.append(el('td', 'd', fmtDate(b.date)));
     const t = el('td'); t.append(link(b.url, b.title || '—')); const m = el('div', 'meta', (b.sign ? '№ ' + b.sign : '') + (b.withdrawn ? ' · оттеглен' : '')); if (safeUrl(b.pdf)) { m.append(' · '); m.append(link(b.pdf, 'PDF')); } t.append(m); tr.append(t);
+    tr.append(el('td', b.adopted ? 'okc' : (b.withdrawn ? 'meta' : ''), b.stage || '—'));
     tr.append(el('td', '', b.submitters && b.submitters.length ? b.submitters.join(', ') : '—'));
     tr.append(el('td', 'meta', (b.committees || []).join('; ')));
     return tr;
   }));
-  if (!rows.length) { const tr = el('tr'); const td = el('td', 'note', 'Няма съвпадения.'); td.colSpan = 4; tr.append(td); body.append(tr); }
+  if (!rows.length) { const tr = el('tr'); const td = el('td', 'note', 'Няма съвпадения.'); td.colSpan = 5; tr.append(td); body.append(tr); }
 }
 $('nb-q').addEventListener('input', (e) => { nbq = e.target.value; renderNewBills(); });
 

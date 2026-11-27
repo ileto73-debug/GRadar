@@ -78,6 +78,9 @@ def person_name(p):
             if p.get(k):
                 name = str(p[k]).strip()
                 break
+    if not name:
+        vals = [str(v).strip() for k, v in sorted(p.items()) if isinstance(v, str) and v.strip() and not k.lower().endswith(("id", "date"))]
+        name = vals[0] if vals else ""
     party = p.get("A_ns_CL_value_short")
     return f"{name} ({party})" if name and party else name
 
@@ -127,41 +130,65 @@ def main():
         details = 0
         debug_sample = None
         for b in recent:
-            prev = old.get(b["id"])
-            if prev and prev.get("submitters"):
-                b["submitters"] = prev["submitters"]
-                b["withdrawn"] = prev.get("withdrawn", False)
-                b["pdf"] = prev.get("pdf")
-            elif details < DETAIL_LIMIT:
+            prev = old.get(b["id"]) or {}
+            if details >= DETAIL_LIMIT:
+                for k in ("submitters", "withdrawn", "pdf", "stage", "adopted", "dv"):
+                    if k in prev:
+                        b[k] = prev[k]
+            else:
                 details += 1
                 try:
                     d = get(f"bill/{b['id']}")
                     d = d if isinstance(d, dict) else {}
-                    b["submitters"] = [n for n in (person_name(p) for p in d.get("imp_list") or []) if n]
-                    if not b["submitters"] and debug_sample is None:
-                        debug_sample = {"bill_id": b["id"], "keys": sorted(d.keys()),
-                                        "imp_list": (d.get("imp_list") or [])[:2], "file_list": (d.get("file_list") or [])[:1],
-                                        "other": {k: v for k, v in d.items() if not isinstance(v, (list, dict))}}
+                    subs = [n for n in (person_name(x) for x in (d.get("imp_list") or []) + (d.get("imp_list_min") or [])) if n]
+                    b["submitters"] = subs
                     b["withdrawn"] = bool(d.get("withdrawn"))
+                    folder = d.get("A_ns_folder")
                     files = d.get("file_list") or []
-                    if files:
-                        f0 = files[0]
-                        fp = str(f0.get("FILEPATH") or "")
-                        fn = str(f0.get("FILENAME") or "")
-                        if fp.startswith("http"):
-                            b["pdf"] = fp
-                        elif fp or fn:
-                            b["pdf"] = SITE + "/" + "/".join(x.strip("/") for x in (fp, fn) if x)
-                    if not b.get("pdf") and b.get("sign") and b.get("session"):
-                        b["pdf"] = f"{SITE}/bills/{b['session']}/{b['sign']}.pdf"
+                    fn = str(files[0].get("FILENAME") or "") if files else ""
+                    if fn and folder:
+                        b["pdf"] = f"{SITE}/bills/{folder}/{fn}"
+                    elif b.get("sign") and folder:
+                        b["pdf"] = f"{SITE}/bills/{folder}/{b['sign']}.pdf"
+                    # Етап
+                    dv_iss, dv_year = d.get("L_Act_dv_iss"), d.get("L_Act_dv_year")
+                    b["adopted"] = bool(dv_iss)
+                    b["dv"] = f"ДВ бр. {dv_iss}/{dv_year}" if dv_iss else None
+                    hall = d.get("steno_hall") or []
+                    if b["withdrawn"]:
+                        b["stage"] = "Оттеглен"
+                    elif dv_iss:
+                        b["stage"] = f"Приет и обнародван ({b['dv']})"
+                    elif d.get("L_Act_veto"):
+                        b["stage"] = "Вето на президента"
+                    elif hall:
+                        b["stage"] = "Обсъждан в пленарна зала"
+                    elif d.get("stan_list") or d.get("stan_list2"):
+                        b["stage"] = "Доклад на комисия"
+                    else:
+                        b["stage"] = "Внесен, в комисии"
                     for dl in d.get("dist_list") or []:
                         cn = dl.get("A_ns_CL_value")
                         if cn and cn not in b["committees"]:
                             b["committees"].append(cn)
+                    if debug_sample is None and (hall or d.get("activity")):
+                        debug_sample = {"bill_id": b["id"], "activity": (d.get("activity") or [])[:3] if isinstance(d.get("activity"), list) else d.get("activity"),
+                                        "steno_hall": hall[:2] if isinstance(hall, list) else hall,
+                                        "imp_list_min": (d.get("imp_list_min") or [])[:2], "stan_list": (d.get("stan_list") or [])[:1]}
                 except Exception as ex:
-                    b["submitters"] = None
+                    for k in ("submitters", "withdrawn", "pdf", "stage", "adopted", "dv"):
+                        if k in prev:
+                            b[k] = prev[k]
                     log.append(f"законопроект {b['id']}: {type(ex).__name__}")
                 time.sleep(0.3)
+            # Вносителят по номера (сигнатурата) на законопроекта, когато API не го дава:
+            # 52-602-… = Министерски съвет, 52-653-… = общ законопроект на комисия, 52-654-… = народни представители
+            sign = str(b.get("sign") or "")
+            if not b.get("submitters"):
+                if "-602-" in sign:
+                    b["submitters"] = ["Министерски съвет"]
+                elif "-653-" in sign:
+                    b["submitters"] = ["Общ законопроект на комисия (обединява няколко проекта)"]
             b["url"] = f"{SITE}/bg/bills/ID/{b['id']}"
 
         if not recent:
