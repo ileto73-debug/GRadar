@@ -161,6 +161,14 @@ def main():
                         b["stage"] = f"Приет и обнародван ({b['dv']})"
                     elif d.get("L_Act_veto"):
                         b["stage"] = "Вето на президента"
+                    elif isinstance(d.get("activity"), list) and d["activity"]:
+                        rank = lambda n: 2 if re.search(r"прие|отхвърл|оттегл", n) else (1 if "обсъжд" in n else 0)
+                        acts = sorted(d["activity"], key=lambda a: (str(a.get("L_Act_St_date") or ""), rank(str(a.get("L_Act_St_name") or "")), a.get("L_Act_A_id") or 0))
+                        a = acts[-1]
+                        what = str(a.get("L_Act_St_name") or "").strip()
+                        where = str(a.get("L_Act_St2_name") or "").strip()
+                        when = parse_date(a.get("L_Act_St_date"))
+                        b["stage"] = (what[:1].upper() + what[1:]) + (f" – {where}" if where else "") + (f", {when.strftime('%d.%m.%Y')}" if when else "")
                     elif hall:
                         b["stage"] = "Обсъждан в пленарна зала"
                     elif d.get("stan_list") or d.get("stan_list2"):
