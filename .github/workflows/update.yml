@@ -20,6 +20,8 @@ jobs:
         run: pip install requests
       - name: Обновяване от Евростат
         run: python update.py
+      - name: Нови законопроекти от parliament.bg
+        run: python parliament.py
       - name: Запис на промените
         run: |
           git config user.name "radar-bot"
