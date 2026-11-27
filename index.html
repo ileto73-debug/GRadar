@@ -52,6 +52,10 @@ h2{font-size:18px;font-weight:600;margin:0 0 4px}
 .flags li{border-left:2px solid var(--bad);padding-left:10px}
 .flags .by{display:block;font-size:13px;color:var(--muted)}
 .effect .num{font-family:var(--serif);font-size:20px;font-variant-numeric:tabular-nums}
+.groups{margin:6px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px;font-size:13px}
+.groups li{display:flex;align-items:center;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.dot.for{background:var(--ok)}.dot.against{background:var(--bad)}.dot.mixed{background:var(--warn)}
 .vbar{display:flex;height:8px;border-radius:4px;overflow:hidden;background:var(--grid);max-width:360px;margin-top:4px}
 .chart{position:relative;min-height:260px}
 .chart svg{display:block;width:100%;overflow:visible}
@@ -89,7 +93,7 @@ details li{color:var(--muted)}
       <button class="btn" id="refresh" type="button">Обнови</button>
       <p class="note" id="stamp">Зареждане…</p>
     </div>
-    <p class="note">Всеки факт има връзка към източника. Икономическите данни се обновяват автоматично от Евростат; оценките на обещания, закони и констатации се добавят след преглед от редактор.</p>
+    <p class="note">Всеки факт има връзка към източника. Икономическите данни (Евростат) и списъкът с нови законопроекти (parliament.bg) се обновяват автоматично всеки ден; оценките на обещания, закони и констатации се добавят след преглед от редактор.</p>
   </header>
 
   <nav class="tabs" aria-label="Раздели">
@@ -111,6 +115,15 @@ details li{color:var(--muted)}
     <p class="lede" id="l-lede">—</p>
     <p class="sub">За всеки закон: кой плаща, кой печели, ефектът в евро и кой какво е сигнализирал. Най-новите са най-отгоре.</p>
     <div class="list" id="l-list"></div>
+    <section class="panel" id="new-bills">
+      <h2>Нови законопроекти в парламента</h2>
+      <p class="sub" id="nb-sub">Автоматичен списък от parliament.bg за последните 90 дни, без оценка. Законопроектите с голям ефект се оценяват по-горе след преглед.</p>
+      <div class="filter"><label for="nb-q">Търси:</label><input id="nb-q" type="search" placeholder="дума от заглавието или вносител" style="font:inherit;font-size:14px;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--fg);flex:1;min-width:0"></div>
+      <div class="tw"><table>
+        <thead><tr><th>Дата</th><th>Законопроект</th><th>Вносители</th><th>Комисии</th></tr></thead>
+        <tbody id="nb-body"></tbody>
+      </table></div>
+    </section>
     <p class="note">„Кой плаща“ и „кой печели“ описват преките последици от текста според цитираните източници. Това не е обвинение към конкретни лица.</p>
   </section>
 
@@ -202,7 +215,7 @@ details li{color:var(--muted)}
       <li>Икономическите показатели се сравняват с официални граници: таван на дефицита 3% и на дълга 60% от БВП (Договор за ЕС), минимум 2% от БВП за отбрана (НАТО), цел на ЕЦБ за инфлация 2%. Жълтата зона е предупредителен праг, записан в данните.</li>
       <li>„Обещания срещу действия“ сравнява публично изявление с последващо действие. Статуси: изпълнено, неизпълнено, противоречие, в процес.</li>
       <li>Сигналите показват отклонение от правило, а не вина на конкретно лице. Имена се посочват само когато източникът ги посочва като автори или вносители.</li>
-      <li>Автоматично (ежедневно) се обновяват само данните от Евростат. Всичко останало се добавя след редакторски преглед; историята на промените е публична в GitHub.</li>
+      <li>Автоматично (ежедневно) се обновяват данните от Евростат и списъкът с нови законопроекти от parliament.bg. Всичко останало се добавя след редакторски преглед; историята на промените е публична в GitHub.</li>
     </ul>
     <p class="log" id="log"></p>
   </details>
@@ -210,7 +223,7 @@ details li{color:var(--muted)}
 
 <script>
 (() => {
-const FILES = ['meta','indicators','deficit_path','inflation','events','bills','flags','promises','findings','media_scores','media_owners','media_findings'];
+const FILES = ['meta','indicators','deficit_path','inflation','events','bills','flags','promises','findings','media_scores','media_owners','media_findings','votes'];
 const D = {};
 const locale = d3.formatLocale({decimal: ',', thousands: ' ', grouping: [3], currency: ['', '']});
 const f1 = locale.format(',.1f'), f2 = locale.format(',.2f'), f0 = locale.format(',.0f');
@@ -234,6 +247,7 @@ async function load() {
   try {
     const res = await Promise.all(FILES.map((f) => fetch(`data/${f}.json?t=${Date.now()}`, {cache: 'no-store'}).then((r) => { if (!r.ok) throw new Error(f); return r.json(); })));
     FILES.forEach((f, i) => { D[f] = res[i]; });
+    D.parliament_bills = await fetch(`data/parliament_bills.json?t=${Date.now()}`, {cache: 'no-store'}).then((r) => r.ok ? r.json() : null).catch(() => null);
     renderAll();
     const u = D.meta.updated ? new Date(D.meta.updated) : null;
     const c = D.meta.auto_checked ? new Date(D.meta.auto_checked) : null;
@@ -303,6 +317,20 @@ function renderLaws() {
       const z = el('span'); z.style.width = (tot ? va / tot * 100 : 0) + '%'; z.style.background = 'var(--bad)';
       bar.append(a, z); v.append(bar); c.append(v);
     }
+    const gv = (D.votes || []).filter((x) => x.bill_id === r.id);
+    if (gv.length) {
+      const col = el('div', 'col'); col.append(el('h4', '', 'Гласуване по групи · ' + gv[0].vote));
+      const ul = el('ul', 'groups');
+      gv.forEach((x) => {
+        const p = String(x.position);
+        const cls = p === 'за' ? 'for' : (p === 'против' ? 'against' : 'mixed');
+        const li = el('li'); li.append(el('span', 'dot ' + cls), document.createTextNode(x.group + ' – ' + p + (x.count !== null && x.count !== undefined ? ' (' + x.count + ')' : '') + (x.note ? ' · ' + x.note : '')));
+        ul.append(li);
+      });
+      col.append(ul); const s2 = el('div', 'meta'); s2.append(link(gv[0].url, 'Източник за гласуването')); col.append(s2); c.append(col);
+    } else if (r.votes_for !== null && r.votes_for !== undefined) {
+      c.append(el('div', 'meta', 'Разбивка по групи: няма данни в източниците.'));
+    }
     if (mine.length) {
       const col = el('div', 'col'); col.append(el('h4', '', 'Сигнали (' + mine.length + ')'));
       const ul = el('ul', 'flags');
@@ -313,7 +341,29 @@ function renderLaws() {
     return c;
   });
   $('l-list').replaceChildren(...list);
+  renderNewBills();
 }
+
+let nbq = '';
+function renderNewBills() {
+  const P = D.parliament_bills, body = $('nb-body');
+  if (!P || !P.bills || !P.bills.length) {
+    body.replaceChildren(); const tr = el('tr'); const td = el('td', 'note', 'Списъкът ще се появи след първото автоматично обновяване от parliament.bg.'); td.colSpan = 4; tr.append(td); body.append(tr); return;
+  }
+  if (P.checked) $('nb-sub').textContent = 'Автоматичен списък от parliament.bg за последните 90 дни, без оценка (проверено: ' + new Date(P.checked).toLocaleString('bg-BG') + '). Законопроектите с голям ефект се оценяват по-горе след преглед.';
+  const q = nbq.trim().toLowerCase();
+  const rows = P.bills.filter((b) => !q || [b.title, b.sign, (b.submitters || []).join(' ')].join(' ').toLowerCase().includes(q));
+  body.replaceChildren(...rows.map((b) => {
+    const tr = el('tr');
+    tr.append(el('td', 'd', fmtDate(b.date)));
+    const t = el('td'); t.append(link(b.url, b.title || '—')); const m = el('div', 'meta', (b.sign ? '№ ' + b.sign : '') + (b.withdrawn ? ' · оттеглен' : '')); if (safeUrl(b.pdf)) { m.append(' · '); m.append(link(b.pdf, 'PDF')); } t.append(m); tr.append(t);
+    tr.append(el('td', '', b.submitters && b.submitters.length ? b.submitters.join(', ') : '—'));
+    tr.append(el('td', 'meta', (b.committees || []).join('; ')));
+    return tr;
+  }));
+  if (!rows.length) { const tr = el('tr'); const td = el('td', 'note', 'Няма съвпадения.'); td.colSpan = 4; tr.append(td); body.append(tr); }
+}
+$('nb-q').addEventListener('input', (e) => { nbq = e.target.value; renderNewBills(); });
 
 /* ---------- Законосъобразност ---------- */
 let kind = '';

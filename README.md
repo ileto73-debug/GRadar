@@ -9,6 +9,7 @@
 | `index.html` | Самият сайт. Чете данните от папка `data/`. Бутонът „Обнови“ презарежда най-новите данни без кеш. |
 | `data/*.json` | Всички данни, по един файл на раздел. |
 | `update.py` | Скрипт, който тегли икономическите данни от Евростат (инфлация, БВП, безработица, дефицит, дълг). |
+| `parliament.py` | Скрипт, който тегли списъка с нови законопроекти от parliament.bg (дата, номер, заглавие, вносители, комисии). |
 | `.github/workflows/update.yml` | Пуска `update.py` всеки ден и записва промените в хранилището. |
 
 ## Публикуване в GitHub (около 5 минути)
@@ -22,7 +23,7 @@
 
 ## Как работи обновяването
 
-- **Автоматично, всеки ден:** икономическите показатели от Евростат. Ако Евростат не отговори, старите стойности остават, а грешката се записва в `data/meta.json` (виждат се в „Методология и ограничения“ на сайта).
+- **Автоматично, всеки ден:** икономическите показатели от Евростат и списъкът с нови законопроекти от parliament.bg (раздел „Закони“, долу). Ако Евростат не отговори, старите стойности остават, а грешката се записва в `data/meta.json` (виждат се в „Методология и ограничения“ на сайта).
 - **След преглед от редактор:** обещания, закони, констатации и медии. Тези оценки изискват човешка преценка и не се публикуват автоматично.
 - **Бутонът „Обнови“** показва най-новото, което е записано в хранилището. Самото теглене от Евростат става в GitHub Actions. Може да се пусне веднага от раздел **Actions → Run workflow**.
 
@@ -40,6 +41,7 @@
 - `promises.json`: id, person, role, promise_date, promise, action_date, action, status (`kept` / `broken` / `contradiction` / `progress`), explanation, promise_url, action_url
 - `bills.json`: id, title, number, submitter, stage, stage_date, effect_eur_m (число или null), effect_label, who_pays, who_gains, votes_for, votes_against (число или null), url
 - `flags.json`: id, bill_id, flag, by, url
+- `votes.json` (гласуване по групи): bill_id, vote (кое гласуване и дата), group, position (`за` / `против` / `въздържал се` / смесено), count (число или null), note (по желание), url
 - `findings.json`: id, date, act, responsible, finder, kind (`court` / `audit` / `eu` / `oversight` / `allegation`), finding, binding, url
 - `indicators.json`: id, indicator, value, unit, period, limit, warn (число или null), rule (`max` / `min`), limit_label, source, url
 - `events.json`: date, event, institution, kind (`alarm` / `deadline` / `info`), url

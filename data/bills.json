@@ -34,15 +34,15 @@
   "title": "Промени в Закона за местните данъци и такси",
   "number": "52-602-01-59",
   "submitter": "Министерски съвет (05.11.2026)",
-  "stage": "Приет на първо гласуване; предстои второ",
-  "stage_date": "2026-11-11",
+  "stage": "Приет окончателно (второ четене)",
+  "stage_date": "2026-11-26",
   "effect_eur_m": null,
   "effect_label": "",
   "who_pays": "Собствениците на имоти: базисните стойности за данъчна оценка растат с 30% през 2027 г. и с по 35% през 2028 и 2029 г.",
   "who_gains": "Общинските бюджети (по-високи приходи от данък върху имотите)",
   "votes_for": null,
   "votes_against": null,
-  "url": "https://www.parliament.bg/bg/plenaryprogram"
+  "url": "https://www.bta.bg/bg/news/bulgaria/1255534-po-visoka-danachna-otsenka-na-imotite-s-30-ot-2027-g-i-namalenie-s-23-na-dana"
  },
  {
   "id": "budget2026",
@@ -55,8 +55,8 @@
   "effect_label": "Планиран дефицит (5,7% от БВП, касова основа)",
   "who_pays": "Работещите на минимална заплата (законовият механизъм за актуализация е спрян и заплатата остава на нивото за 2026 г.); получателите на социални плащания, които са замразени",
   "who_gains": "Бюджетните разпоредители: по искането за вето капиталовите разходи растат с над 60%, а издръжката – с над 35%",
-  "votes_for": null,
-  "votes_against": null,
+  "votes_for": 125,
+  "votes_against": 84,
   "url": "https://www.capital.bg/politika_i_ikonomika/ikonomika/2026/07/15/4935480_bjudjet_2026_kakvo_triabva_da_znaem/"
  },
  {

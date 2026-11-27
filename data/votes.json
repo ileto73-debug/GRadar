@@ -1,0 +1,99 @@
+[
+ {
+  "bill_id": "budget2027",
+  "vote": "Първо четене, 25.11.2026",
+  "group": "Прогресивна България",
+  "position": "за",
+  "count": 126,
+  "url": "https://banker.bg/2026/11/25/na-parvo-chetene-mnozinstvoto-prie/"
+ },
+ {
+  "bill_id": "budget2027",
+  "vote": "Първо четене, 25.11.2026",
+  "group": "ГЕРБ-СДС",
+  "position": "против",
+  "count": 27,
+  "url": "https://banker.bg/2026/11/25/na-parvo-chetene-mnozinstvoto-prie/"
+ },
+ {
+  "bill_id": "budget2027",
+  "vote": "Първо четене, 25.11.2026",
+  "group": "ДПС",
+  "position": "против",
+  "count": 18,
+  "url": "https://banker.bg/2026/11/25/na-parvo-chetene-mnozinstvoto-prie/"
+ },
+ {
+  "bill_id": "budget2027",
+  "vote": "Първо четене, 25.11.2026",
+  "group": "Демократична България",
+  "position": "против",
+  "count": 17,
+  "url": "https://banker.bg/2026/11/25/na-parvo-chetene-mnozinstvoto-prie/"
+ },
+ {
+  "bill_id": "budget2027",
+  "vote": "Първо четене, 25.11.2026",
+  "group": "Продължаваме промяната",
+  "position": "против",
+  "count": 12,
+  "url": "https://banker.bg/2026/11/25/na-parvo-chetene-mnozinstvoto-prie/"
+ },
+ {
+  "bill_id": "budget2027",
+  "vote": "Първо четене, 25.11.2026",
+  "group": "Възраждане",
+  "position": "против",
+  "count": 7,
+  "url": "https://banker.bg/2026/11/25/na-parvo-chetene-mnozinstvoto-prie/"
+ },
+ {
+  "bill_id": "tax2027",
+  "vote": "Окончателно гласуване, 26.11.2026",
+  "group": "Прогресивна България",
+  "position": "за",
+  "count": null,
+  "url": "https://safenews.bg/oblekcheniya-za-semejstvata-po-soleni-globi-za-grazhdanite-danachniyat-paket-na-upravlyavasthite-razpali-spor-v-parlamenta/"
+ },
+ {
+  "bill_id": "tax2027",
+  "vote": "Окончателно гласуване, 26.11.2026",
+  "group": "ГЕРБ-СДС",
+  "position": "против / въздържал се",
+  "count": null,
+  "note": "част от групата против, 20 депутати въздържали се",
+  "url": "https://safenews.bg/oblekcheniya-za-semejstvata-po-soleni-globi-za-grazhdanite-danachniyat-paket-na-upravlyavasthite-razpali-spor-v-parlamenta/"
+ },
+ {
+  "bill_id": "tax2027",
+  "vote": "Окончателно гласуване, 26.11.2026",
+  "group": "ДПС",
+  "position": "против",
+  "count": null,
+  "url": "https://safenews.bg/oblekcheniya-za-semejstvata-po-soleni-globi-za-grazhdanite-danachniyat-paket-na-upravlyavasthite-razpali-spor-v-parlamenta/"
+ },
+ {
+  "bill_id": "tax2027",
+  "vote": "Окончателно гласуване, 26.11.2026",
+  "group": "Демократична България",
+  "position": "против",
+  "count": null,
+  "url": "https://safenews.bg/oblekcheniya-za-semejstvata-po-soleni-globi-za-grazhdanite-danachniyat-paket-na-upravlyavasthite-razpali-spor-v-parlamenta/"
+ },
+ {
+  "bill_id": "tax2027",
+  "vote": "Окончателно гласуване, 26.11.2026",
+  "group": "Продължаваме промяната",
+  "position": "против",
+  "count": null,
+  "url": "https://safenews.bg/oblekcheniya-za-semejstvata-po-soleni-globi-za-grazhdanite-danachniyat-paket-na-upravlyavasthite-razpali-spor-v-parlamenta/"
+ },
+ {
+  "bill_id": "tax2027",
+  "vote": "Окончателно гласуване, 26.11.2026",
+  "group": "Възраждане",
+  "position": "против",
+  "count": null,
+  "url": "https://safenews.bg/oblekcheniya-za-semejstvata-po-soleni-globi-za-grazhdanite-danachniyat-paket-na-upravlyavasthite-razpali-spor-v-parlamenta/"
+ }
+]
