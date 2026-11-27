@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Държавен радар</title>
+<meta name="description" content="Гражданско табло за отчетност на българската власт: обещания срещу действия, закони, законосъобразност, икономика и медии.">
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<style>
+:root{--bg:#faf9f5;--panel:#ffffff;--fg:#1f1e1b;--muted:#6b6862;--line:#e4e1d8;--ok:#2f7d4f;--warn:#b7791f;--bad:#c2412d;--c0:#3b6ea8;--c1:#c2412d;--c2:#8a5cb8;--ref:#8f8b82;--grid:#ecEAe3;--r:10px;--serif:Georgia,"Times New Roman",serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1a18;--panel:#24231f;--fg:#ecebe6;--muted:#a3a097;--line:#3a3833;--ok:#5fb47f;--warn:#e0a84a;--bad:#e2705c;--c0:#7aa7dc;--c1:#e2705c;--c2:#b991e0;--ref:#8a877f;--grid:#2f2d29}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.45}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 16px 48px;display:flex;flex-direction:column;gap:24px}
+.kicker{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin:0}
+h1{font-family:var(--serif);font-weight:400;font-size:clamp(26px,4vw,36px);margin:4px 0;line-height:1.2}
+.note{margin:0;color:var(--muted);font-size:13px}
+.bar{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.btn{font:inherit;font-size:14px;background:var(--fg);color:var(--bg);border:0;border-radius:999px;padding:8px 16px;cursor:pointer}
+.btn[disabled]{opacity:.6;cursor:wait}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid var(--line)}
+.tab{font:inherit;font-size:15px;background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);padding:10px 12px;cursor:pointer;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--fg);font-weight:600}
+.page{display:flex;flex-direction:column;gap:24px}
+.page[hidden]{display:none}
+.lede{margin:0;font-size:19px;line-height:1.45}
+.lede b{font-variant-numeric:tabular-nums}
+.red{color:var(--bad)}.yel{color:var(--warn)}.okc{color:var(--ok)}
+h2{font-size:18px;font-weight:600;margin:0 0 4px}
+.sub{margin:0 0 12px;color:var(--muted);font-size:14px}
+.panel,.card,.item{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px;min-width:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}
+.card{border-left:4px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.card.bad,.item.bad{border-left:4px solid var(--bad)}.card.warn,.item.warn{border-left:4px solid var(--warn)}.card.ok,.item.ok{border-left:4px solid var(--ok)}
+.item.alleg{border-left:4px dashed var(--line)}
+.c-name{font-weight:600}.c-meta,.meta{font-size:13px;color:var(--muted)}
+.c-val{font-family:var(--serif);font-size:32px;font-variant-numeric:tabular-nums;line-height:1.1}
+.c-unit{font-family:var(--sans);font-size:13px;color:var(--muted);margin-left:4px}
+.badge{align-self:flex-start;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;border:1px solid currentColor;white-space:nowrap}
+.badge.bad{color:var(--bad)}.badge.warn{color:var(--warn)}.badge.ok{color:var(--ok)}.badge.neutral{color:var(--muted)}
+.list{display:flex;flex-direction:column;gap:12px}
+.item{display:flex;flex-direction:column;gap:10px}
+.top{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px}
+.top h3{font-size:17px;margin:0}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.col h4{margin:0 0 4px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.col p{margin:0}
+.why{color:var(--muted)}
+.flags{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.flags li{border-left:2px solid var(--bad);padding-left:10px}
+.flags .by{display:block;font-size:13px;color:var(--muted)}
+.effect .num{font-family:var(--serif);font-size:20px;font-variant-numeric:tabular-nums}
+.vbar{display:flex;height:8px;border-radius:4px;overflow:hidden;background:var(--grid);max-width:360px;margin-top:4px}
+.chart{position:relative;min-height:260px}
+.chart svg{display:block;width:100%;overflow:visible}
+.chart .tick text{fill:var(--muted);font-size:12px}
+.chart .domain{stroke:var(--line)}
+.chart .tick line{stroke:var(--grid)}
+.tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--line);box-shadow:0 4px 16px rgba(0,0,0,.12);border-radius:8px;padding:6px 10px;font-size:12px;white-space:nowrap;z-index:2}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0 0 8px;padding:0;list-style:none;font-size:12px;color:var(--muted)}
+.legend li{display:flex;align-items:center;gap:6px}
+.sw{width:14px;height:3px;border-radius:2px;display:inline-block}
+.sw.dash{border-top:2px dashed var(--ref);height:0}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-size:12px;color:var(--muted);font-weight:600;padding:6px 8px;border-bottom:1px solid var(--line)}
+td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+td.d{white-space:nowrap;font-variant-numeric:tabular-nums}
+.kind.alarm{color:var(--bad);font-weight:600}.kind.deadline{color:var(--warn);font-weight:600}.kind.info{color:var(--muted)}
+select{font:inherit;font-size:14px;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--fg)}
+.filter{display:flex;align-items:center;gap:8px;font-size:14px}
+.actions{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:8px}
+details{border-top:1px solid var(--line);padding-top:12px}
+summary{cursor:pointer;font-weight:600}
+details li{color:var(--muted)}
+.err{color:var(--bad);margin:0}
+.log{font-size:12px;color:var(--muted);white-space:pre-wrap}
+@media print{.tabs,.bar .btn{display:none}.page[hidden]{display:flex}.page{break-before:page}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="kicker">Държавен радар</p>
+    <h1>Какво се обещава, какво се прави и какво струва</h1>
+    <div class="bar">
+      <button class="btn" id="refresh" type="button">Обнови</button>
+      <p class="note" id="stamp">Зареждане…</p>
+    </div>
+    <p class="note">Всеки факт има връзка към източника. Икономическите данни се обновяват автоматично от Евростат; оценките на обещания, закони и констатации се добавят след преглед от редактор.</p>
+  </header>
+
+  <nav class="tabs" aria-label="Раздели">
+    <button class="tab" data-tab="promises" aria-selected="true">Обещания срещу действия</button>
+    <button class="tab" data-tab="laws" aria-selected="false">Закони и законопроекти</button>
+    <button class="tab" data-tab="legality" aria-selected="false">Законосъобразност</button>
+    <button class="tab" data-tab="economy" aria-selected="false">Икономика и аларми</button>
+    <button class="tab" data-tab="media" aria-selected="false">Медии</button>
+  </nav>
+
+  <section class="page" id="promises">
+    <p class="lede" id="p-lede">—</p>
+    <div class="filter"><label for="person">Покажи:</label><select id="person"></select></div>
+    <div class="list" id="p-list"></div>
+    <p class="note">Всяко обещание е сравнено с конкретно действие с дата и източник. „Позиция на отговорните“ е тяхното обяснение, когато има такова. Статусът оценява съответствието между думи и действия, а не намеренията на човека.</p>
+  </section>
+
+  <section class="page" id="laws" hidden>
+    <p class="lede" id="l-lede">—</p>
+    <p class="sub">За всеки закон: кой плаща, кой печели, ефектът в евро и кой какво е сигнализирал. Най-новите са най-отгоре.</p>
+    <div class="list" id="l-list"></div>
+    <p class="note">„Кой плаща“ и „кой печели“ описват преките последици от текста според цитираните източници. Това не е обвинение към конкретни лица.</p>
+  </section>
+
+  <section class="page" id="legality" hidden>
+    <p class="lede" id="g-lede">—</p>
+    <div class="filter"><label for="kind">Покажи:</label>
+      <select id="kind"><option value="">Всички</option><option value="court">Съдебни решения</option><option value="audit">Одити</option><option value="eu">ЕС и контролни органи</option><option value="allegation">Непроверени сигнали</option></select>
+    </div>
+    <div class="list" id="g-list"></div>
+    <section class="panel">
+      <h2>Какво можете да направите</h2>
+      <ul class="actions">
+        <li><b>Поискайте документите.</b> По Закона за достъп до обществена информация всеки може да поиска договори, решения и разходи. Срокът за отговор е 14 дни. Помощ и образци: <a href="https://www.aip-bg.org" target="_blank" rel="noopener">Програма „Достъп до информация“</a>.</li>
+        <li><b>Подайте сигнал за престъпление</b> до <a href="https://www.prb.bg" target="_blank" rel="noopener">Прокуратурата</a>, с описание на фактите и документите.</li>
+        <li><b>Сигнализирайте за нарушения с публични пари</b> на <a href="https://www.bulnao.government.bg" target="_blank" rel="noopener">Сметната палата</a>. Финансови нарушения проверява и Агенцията за държавна финансова инспекция.</li>
+        <li><b>Пишете на депутатите от вашия район</b> и поискайте парламентарен контрол по конкретна констатация, с връзка към източника.</li>
+      </ul>
+    </section>
+    <p class="note">Тук влизат само констатации на съдилища, Сметната палата, институции на ЕС и независими контролни органи. Твърденията на партии са отбелязани като непроверени. Окончателно законосъобразността се установява само от съд.</p>
+  </section>
+
+  <section class="page" id="economy" hidden>
+    <p class="lede" id="e-lede">—</p>
+    <section>
+      <h2>Сигнали по показатели</h2>
+      <p class="sub">Червено: над тавана или под минимума. Жълто: близо до границата. Зелено: в норма.</p>
+      <div class="grid" id="cards"></div>
+    </section>
+    <div class="two">
+      <section class="panel">
+        <h2>Дефицит: факт, прогноза и цел</h2>
+        <p class="sub">Бюджетен дефицит, % от БВП, спрямо тавана на ЕС от 3%.</p>
+        <ul class="legend">
+          <li><span class="sw" style="background:var(--c0)"></span>Факт (Евростат)</li>
+          <li><span class="sw" style="background:var(--c1)"></span>Прогноза на ЕК (пролет 2026)</li>
+          <li><span class="sw" style="background:var(--c2)"></span>Цел на правителството (2.11.2026)</li>
+          <li><span class="sw dash"></span>Таван на ЕС: 3%</li>
+        </ul>
+        <div class="chart" id="deficit"></div>
+      </section>
+      <section class="panel">
+        <h2>Инфлация по месеци</h2>
+        <p class="sub" id="infl-label">Годишна инфлация, %. Целта на ЕЦБ за еврозоната е 2%.</p>
+        <ul class="legend">
+          <li><span class="sw" style="background:var(--c0)"></span><span id="infl-series">Годишна инфлация</span></li>
+          <li><span class="sw dash"></span>Цел на ЕЦБ: 2%</li>
+        </ul>
+        <div class="chart" id="inflation"></div>
+      </section>
+    </div>
+    <section class="panel">
+      <h2>Хроника: решения, срокове и сигнали</h2>
+      <div class="tw"><table>
+        <thead><tr><th>Дата</th><th>Тип</th><th>Събитие</th><th>Отговорна институция</th><th>Източник</th></tr></thead>
+        <tbody id="events"></tbody>
+      </table></div>
+    </section>
+  </section>
+
+  <section class="page" id="media" hidden>
+    <p class="lede" id="m-lede">—</p>
+    <p class="sub">Целта не е контрол над медиите, а прозрачност: кой ги притежава, от какво зависят и какво казват независимите оценки.</p>
+    <section class="panel">
+      <h2>Риск за медийния плурализъм по области</h2>
+      <p class="sub">Media Pluralism Monitor 2026. Над 66% е висок риск.</p>
+      <div class="chart" id="mpm" style="min-height:180px"></div>
+    </section>
+    <section class="panel">
+      <h2>Кой притежава големите национални медии</h2>
+      <div class="tw"><table>
+        <thead><tr><th>Медия</th><th>Собственик</th><th>Данни към</th><th>Бележка</th><th>Източник</th></tr></thead>
+        <tbody id="owners"></tbody>
+      </table></div>
+      <p class="note">Собствеността трябва да се проверява периодично в Търговския регистър и в регистъра на СЕМ.</p>
+    </section>
+    <section class="panel">
+      <h2>Какво казват независимите оценки</h2>
+      <ul class="flags" id="mfind"></ul>
+    </section>
+    <section class="panel">
+      <h2>Липсващи данни: публичните пари за медии</h2>
+      <p class="why">Няма централизиран публичен регистър колко пари получава всяка медия от министерства, агенции и европейски програми. Тези данни могат да се поискат по Закона за достъп до обществена информация от всяко ведомство.</p>
+    </section>
+  </section>
+
+  <details>
+    <summary>Методология и ограничения</summary>
+    <ul>
+      <li>Икономическите показатели се сравняват с официални граници: таван на дефицита 3% и на дълга 60% от БВП (Договор за ЕС), минимум 2% от БВП за отбрана (НАТО), цел на ЕЦБ за инфлация 2%. Жълтата зона е предупредителен праг, записан в данните.</li>
+      <li>„Обещания срещу действия“ сравнява публично изявление с последващо действие. Статуси: изпълнено, неизпълнено, противоречие, в процес.</li>
+      <li>Сигналите показват отклонение от правило, а не вина на конкретно лице. Имена се посочват само когато източникът ги посочва като автори или вносители.</li>
+      <li>Автоматично (ежедневно) се обновяват само данните от Евростат. Всичко останало се добавя след редакторски преглед; историята на промените е публична в GitHub.</li>
+    </ul>
+    <p class="log" id="log"></p>
+  </details>
+</div>
+
+<script>
+(() => {
+const FILES = ['meta','indicators','deficit_path','inflation','events','bills','flags','promises','findings','media_scores','media_owners','media_findings'];
+const D = {};
+const locale = d3.formatLocale({decimal: ',', thousands: ' ', grouping: [3], currency: ['', '']});
+const f1 = locale.format(',.1f'), f2 = locale.format(',.2f'), f0 = locale.format(',.0f');
+const num = (v) => { const n = +v; return Math.round(n * 10) === n * 10 ? f1(n) : f2(n); };
+const MONTHS = ['яну','фев','мар','апр','май','юни','юли','авг','сеп','окт','ное','дек'];
+const safeUrl = (u) => (typeof u === 'string' && /^https?:\/\//.test(u)) ? u : null;
+const fmtDate = (v) => {
+  if (!v) return '';
+  const a = d3.utcParse('%Y-%m-%d')(v); if (a) return d3.utcFormat('%d.%m.%Y')(a);
+  const b = d3.utcParse('%Y-%m')(v); if (b) return MONTHS[b.getUTCMonth()] + ' ' + b.getUTCFullYear();
+  return v;
+};
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text !== undefined && text !== null) e.textContent = text; return e; };
+const link = (u, text) => { const s = safeUrl(u); if (!s) return document.createTextNode(text); const a = el('a', '', text); a.href = s; a.target = '_blank'; a.rel = 'noopener'; return a; };
+const $ = (id) => document.getElementById(id);
+const setLede = (id, parts) => { const p = $(id); p.replaceChildren(...parts.map((x) => typeof x === 'string' ? document.createTextNode(x) : x)); };
+const B = (text, cls) => el('b', cls || '', String(text));
+
+async function load() {
+  const btn = $('refresh'); btn.disabled = true; $('stamp').textContent = 'Зареждане…';
+  try {
+    const res = await Promise.all(FILES.map((f) => fetch(`data/${f}.json?t=${Date.now()}`, {cache: 'no-store'}).then((r) => { if (!r.ok) throw new Error(f); return r.json(); })));
+    FILES.forEach((f, i) => { D[f] = res[i]; });
+    renderAll();
+    const u = D.meta.updated ? new Date(D.meta.updated) : null;
+    const c = D.meta.auto_checked ? new Date(D.meta.auto_checked) : null;
+    $('stamp').textContent = 'Данни към: ' + (u ? u.toLocaleString('bg-BG') : '—') + (D.meta.updated_by ? ' (' + D.meta.updated_by + ')' : '') + (c ? ' · последна автоматична проверка: ' + c.toLocaleString('bg-BG') : '');
+  } catch (e) {
+    $('stamp').textContent = 'Грешка при зареждане на данните (' + e.message + '). Опитайте отново.';
+  } finally { btn.disabled = false; }
+}
+
+function renderAll() {
+  renderPromises(); renderLaws(); renderLegality(); renderEconomy(); renderMedia();
+  $('log').textContent = (D.meta.auto_log || []).slice(0, 10).join('\n');
+}
+
+/* ---------- Обещания ---------- */
+let person = '';
+function renderPromises() {
+  const P = D.promises;
+  const kept = P.filter((p) => p.status === 'kept').length;
+  const bad = P.filter((p) => p.status === 'broken' || p.status === 'contradiction').length;
+  const prog = P.filter((p) => p.status === 'progress').length;
+  setLede('p-lede', ['От ', B(P.length), ' проследени обещания ', B(kept, 'okc'), ' са изпълнени, ', B(bad, 'red'), ' са неизпълнени или в противоречие с действията, а ', B(prog, 'yel'), ' са в процес.']);
+  const sel = $('person'); const names = [...new Set(P.map((p) => p.person))];
+  sel.replaceChildren(new Option('Всички лица', ''), ...names.map((n) => new Option(n, n)));
+  sel.value = names.includes(person) ? person : '';
+  sel.onchange = () => { person = sel.value; renderPromises(); };
+  const ST = {kept: ['Изпълнено', 'ok'], broken: ['Неизпълнено', 'bad'], contradiction: ['Противоречие', 'bad'], progress: ['В процес', 'warn']};
+  const list = P.filter((p) => !person || p.person === person).map((r) => {
+    const st = ST[r.status] || [r.status, ''];
+    const c = el('article', 'item ' + st[1]);
+    const top = el('div', 'top'); top.append(el('h3', '', r.person), el('span', 'badge ' + st[1], st[0])); c.append(top, el('div', 'meta', r.role));
+    const cols = el('div', 'cols');
+    [['Обещано', r.promise, r.promise_date, r.promise_url], ['Направено', r.action, r.action_date, r.action_url]].forEach(([h, t, d, u]) => {
+      const col = el('div', 'col'); col.append(el('h4', '', h + (d ? ' · ' + fmtDate(d) : '')), el('p', '', t || '—'));
+      if (safeUrl(u)) { const s = el('div', 'meta'); s.append(link(u, 'Източник')); col.append(s); }
+      cols.append(col);
+    });
+    c.append(cols);
+    if (r.explanation) { const col = el('div', 'col'); col.append(el('h4', '', 'Позиция на отговорните'), el('p', 'why', r.explanation)); c.append(col); }
+    return c;
+  });
+  $('p-list').replaceChildren(...list);
+}
+
+/* ---------- Закони ---------- */
+function renderLaws() {
+  const L = D.bills, F = D.flags; const ids = new Set(F.map((f) => f.bill_id));
+  setLede('l-lede', ['Следим ', B(L.length), ' закона и законопроекта. По ', B(L.filter((b) => ids.has(b.id)).length, 'red'), ' от тях институции или организации са подали общо ', B(F.length), ' сигнала за нарушения или рискове.']);
+  const list = [...L].sort((a, b) => String(b.stage_date).localeCompare(String(a.stage_date))).map((r) => {
+    const mine = F.filter((x) => x.bill_id === r.id);
+    const c = el('article', 'item' + (mine.length ? ' bad' : ''));
+    const top = el('div', 'top'); top.append(el('h3', '', r.title), el('span', 'badge neutral', r.stage)); c.append(top);
+    c.append(el('div', 'meta', 'Вносител: ' + r.submitter + ' · Последен етап: ' + fmtDate(r.stage_date) + (r.number && r.number !== '—' ? ' · № ' + r.number : '')));
+    if (r.effect_eur_m !== null || r.effect_label) {
+      const ef = el('div', 'effect');
+      if (r.effect_eur_m !== null) { const n = +r.effect_eur_m; ef.append(el('span', 'num', (n > 0 ? '+' : n < 0 ? '−' : '') + f0(Math.abs(n))), document.createTextNode(' млн. евро · ')); }
+      ef.append(document.createTextNode(r.effect_label || '')); c.append(ef);
+    }
+    const cols = el('div', 'cols');
+    [['Кой плаща / губи', r.who_pays], ['Кой печели', r.who_gains]].forEach(([h, t]) => { const col = el('div', 'col'); col.append(el('h4', '', h), el('p', '', t || '—')); cols.append(col); });
+    c.append(cols);
+    if (r.votes_for !== null && r.votes_for !== undefined) {
+      const vf = +r.votes_for, va = +r.votes_against || 0, tot = vf + va;
+      const v = el('div', 'meta', 'Гласуване: ' + vf + ' „за“, ' + va + ' „против“');
+      const bar = el('div', 'vbar'); bar.setAttribute('role', 'img'); bar.setAttribute('aria-label', vf + ' за, ' + va + ' против');
+      const a = el('span'); a.style.width = (tot ? vf / tot * 100 : 0) + '%'; a.style.background = 'var(--ok)';
+      const z = el('span'); z.style.width = (tot ? va / tot * 100 : 0) + '%'; z.style.background = 'var(--bad)';
+      bar.append(a, z); v.append(bar); c.append(v);
+    }
+    if (mine.length) {
+      const col = el('div', 'col'); col.append(el('h4', '', 'Сигнали (' + mine.length + ')'));
+      const ul = el('ul', 'flags');
+      mine.forEach((x) => { const li = el('li', '', x.flag); const by = el('span', 'by'); by.append('Източник: ', link(x.url, x.by)); li.append(by); ul.append(li); });
+      col.append(ul); c.append(col);
+    }
+    const s = el('div', 'meta'); s.append(link(r.url, 'Основен източник')); c.append(s);
+    return c;
+  });
+  $('l-list').replaceChildren(...list);
+}
+
+/* ---------- Законосъобразност ---------- */
+let kind = '';
+function renderLegality() {
+  const G = D.findings;
+  const n = (k) => G.filter((f) => k.includes(f.kind)).length;
+  setLede('g-lede', ['Следим ', B(G.length), ' официални констатации за актове на властта: ', B(n(['court']), 'red'), ' съдебни решения, ', B(n(['audit']), 'red'), ' одита с нарушения, ', B(n(['eu', 'oversight']), 'yel'), ' процедури и становища на ЕС и контролни органи и ', B(n(['allegation'])), ' непроверен сигнал.']);
+  $('kind').onchange = (e) => { kind = e.target.value; renderLegality(); };
+  const KIND = {court: ['Съдебно решение', 'bad'], audit: ['Одит', 'bad'], eu: ['ЕС', 'warn'], oversight: ['Контролен орган', 'warn'], allegation: ['Непроверен сигнал', 'neutral']};
+  const list = [...G].filter((f) => !kind || f.kind === kind || (kind === 'eu' && f.kind === 'oversight')).sort((a, b) => String(b.date).localeCompare(String(a.date))).map((r) => {
+    const k = KIND[r.kind] || [r.kind, 'neutral'];
+    const c = el('article', 'item ' + (r.kind === 'allegation' ? 'alleg' : k[1]));
+    const top = el('div', 'top'); top.append(el('h3', '', r.act), el('span', 'badge ' + k[1], k[0])); c.append(top);
+    c.append(el('div', 'meta', fmtDate(r.date) + ' · Установил: ' + r.finder));
+    const cols = el('div', 'cols');
+    [['Какво е установено', r.finding], ['Отговорна институция / лица', r.responsible]].forEach(([h, t]) => { const col = el('div', 'col'); col.append(el('h4', '', h), el('p', '', t || '—')); cols.append(col); });
+    c.append(cols);
+    const b = el('div', 'col'); b.append(el('h4', '', 'Правна сила'), el('p', 'why', r.binding)); c.append(b);
+    const s = el('div', 'meta'); s.append(link(r.url, 'Източник')); c.append(s);
+    return c;
+  });
+  $('g-list').replaceChildren(...(list.length ? list : [el('p', 'note', 'Няма констатации от този вид.')]));
+}
+
+/* ---------- Икономика ---------- */
+function status(r) {
+  const v = +r.value, lim = +r.limit, hw = r.warn !== null && r.warn !== undefined, w = +r.warn;
+  if (r.rule === 'max') return v > lim ? 'bad' : (hw && v > w ? 'warn' : 'ok');
+  return v < lim ? 'bad' : (hw && v < w ? 'warn' : 'ok');
+}
+function renderEconomy() {
+  const I = D.indicators; const st = I.map(status);
+  setLede('e-lede', ['В момента ', B(st.filter((s) => s === 'bad').length, 'red'), ' от ', B(I.length), ' следени показателя са над допустимото, а ', B(st.filter((s) => s === 'warn').length, 'yel'), ' са в зоната за внимание.']);
+  const LBL = {bad: 'Червен сигнал', warn: 'Внимание', ok: 'В норма'};
+  $('cards').replaceChildren(...I.map((r, i) => {
+    const c = el('article', 'card ' + st[i]);
+    const v = el('div', 'c-val', num(r.value)); v.append(el('span', 'c-unit', r.unit));
+    const lim = el('div', 'c-meta', (r.rule === 'max' ? 'Таван: ' : 'Минимум: ') + num(r.limit) + ' · ' + r.limit_label);
+    const src = el('div', 'c-meta'); src.append(link(r.url, 'Източник: ' + r.source));
+    c.append(el('div', 'c-name', r.indicator), el('div', 'c-meta', r.period), v, lim, el('span', 'badge ' + st[i], LBL[st[i]]), src);
+    return c;
+  }));
+  $('infl-series').textContent = D.meta.inflation_label || 'Годишна инфлация';
+  drawDeficit(); drawInflation();
+  const KIND = {alarm: 'Сигнал', deadline: 'Срок', info: 'Информация'};
+  $('events').replaceChildren(...[...D.events].sort((a, b) => b.date.localeCompare(a.date)).map((r) => {
+    const tr = el('tr'); const td = (x, cls) => { const t = el('td', cls || ''); if (x instanceof Node) t.append(x); else t.textContent = x; tr.append(t); };
+    td(fmtDate(r.date), 'd'); td(el('span', 'kind ' + (KIND[r.kind] ? r.kind : 'info'), KIND[r.kind] || r.kind)); td(r.event); td(r.institution); td(link(r.url, 'Отвори'));
+    return tr;
+  }));
+}
+function tipFor(host) { let t = host.querySelector('.tip'); if (!t) { t = el('div', 'tip'); t.hidden = true; host.append(t); } return t; }
+function place(host, tip, x, y) { tip.hidden = false; const w = tip.offsetWidth; tip.style.left = Math.max(0, Math.min(host.clientWidth - w, x - w / 2)) + 'px'; tip.style.top = Math.max(0, y - tip.offsetHeight - 10) + 'px'; }
+function drawDeficit() {
+  const host = $('deficit'); host.replaceChildren(); if (!host.clientWidth) return;
+  const COLORS = ['var(--c0)', 'var(--c1)', 'var(--c2)']; const NAMES = ['Факт (Евростат)', 'Прогноза на ЕК (пролет 2026)', 'Цел на правителството (2.11.2026)'];
+  const rows = D.deficit_path.map((r) => ({year: +r.year, series: r.series, value: +r.value}));
+  const W = host.clientWidth, H = 260, m = {t: 16, r: 16, b: 28, l: 36};
+  const x = d3.scaleLinear().domain(d3.extent(rows, (r) => r.year)).range([m.l, W - m.r]);
+  const y = d3.scaleLinear().domain([0, Math.max(6, d3.max(rows, (r) => r.value) + 0.5)]).nice().range([H - m.b, m.t]);
+  const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H).attr('role', 'img').attr('aria-label', 'Дефицит на България, % от БВП: факт, прогноза на ЕК и цел на правителството, спрямо тавана от 3%.');
+  svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues(d3.range(x.domain()[0], x.domain()[1] + 1)).tickFormat(d3.format('d')).tickSizeOuter(0));
+  svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5).tickFormat((v) => v + '%').tickSize(-(W - m.l - m.r))).call((g) => g.select('.domain').remove());
+  svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(3)).attr('y2', y(3)).style('stroke', 'var(--ref)').style('stroke-width', 2).style('stroke-dasharray', '5 4');
+  const line = d3.line().x((r) => x(r.year)).y((r) => y(r.value)); const pts = [];
+  NAMES.forEach((name, i) => {
+    const s = rows.filter((r) => r.series === name).sort((a, b) => a.year - b.year);
+    const anchor = rows.find((r) => r.series === NAMES[0] && r.year === 2025);
+    svg.append('path').datum(i > 0 && anchor ? [anchor, ...s] : s).attr('fill', 'none').style('stroke', COLORS[i]).style('stroke-width', 2.5).style('stroke-dasharray', i > 0 ? '6 4' : null).attr('d', line);
+    s.forEach((r) => pts.push({...r, color: COLORS[i]}));
+  });
+  svg.selectAll('circle').data(pts).join('circle').attr('cx', (r) => x(r.year)).attr('cy', (r) => y(r.value)).attr('r', 4).style('fill', (r) => r.color).style('stroke', 'var(--panel)');
+  const tip = tipFor(host);
+  svg.append('rect').attr('x', m.l).attr('y', m.t).attr('width', W - m.l - m.r).attr('height', H - m.t - m.b).attr('fill', 'transparent')
+    .on('pointermove', (ev) => { const yr = Math.round(x.invert(d3.pointer(ev)[0])); const here = pts.filter((p) => p.year === yr); if (!here.length) { tip.hidden = true; return; }
+      tip.replaceChildren(el('div', '', String(yr)), ...here.map((p) => el('div', '', p.series + ': ' + f1(p.value) + '%'))); place(host, tip, x(yr), d3.min(here, (p) => y(p.value))); })
+    .on('pointerleave', () => { tip.hidden = true; });
+}
+function drawInflation() {
+  const host = $('inflation'); host.replaceChildren(); if (!host.clientWidth) return;
+  const rows = D.inflation.map((r) => ({month: r.month, v: r.value === null ? null : +r.value}));
+  const lab = (mo) => MONTHS[+mo.slice(5, 7) - 1] + (rows.length > 12 ? ' ' + mo.slice(2, 4) : '');
+  const W = host.clientWidth, H = 260, m = {t: 22, r: 8, b: 28, l: 36};
+  const x = d3.scaleBand().domain(rows.map((r) => r.month)).range([m.l, W - m.r]).padding(0.25);
+  const y = d3.scaleLinear().domain([0, Math.max(8, d3.max(rows, (r) => r.v || 0) + 1)]).nice().range([H - m.b, m.t]);
+  const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H).attr('role', 'img').attr('aria-label', 'Годишна инфлация по месеци спрямо целта на ЕЦБ от 2%.');
+  svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickFormat(lab).tickSizeOuter(0));
+  svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat((v) => v + '%').tickSize(-(W - m.l - m.r))).call((g) => g.select('.domain').remove());
+  const have = rows.filter((r) => r.v !== null);
+  svg.selectAll('rect.b').data(have).join('rect').attr('class', 'b').attr('x', (r) => x(r.month)).attr('width', x.bandwidth()).attr('y', (r) => y(r.v)).attr('height', (r) => y(0) - y(r.v)).attr('rx', 2).style('fill', 'var(--c0)');
+  if (W > 420) svg.selectAll('text.v').data(have).join('text').attr('class', 'v').attr('x', (r) => x(r.month) + x.bandwidth() / 2).attr('y', (r) => y(r.v) - 5).attr('text-anchor', 'middle').style('fill', 'var(--muted)').style('font-size', '12px').text((r) => f1(r.v));
+  svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(2)).attr('y2', y(2)).style('stroke', 'var(--ref)').style('stroke-width', 2).style('stroke-dasharray', '5 4');
+  const tip = tipFor(host);
+  svg.selectAll('rect.hit').data(rows).join('rect').attr('class', 'hit').attr('x', (r) => x(r.month) - x.step() * x.paddingInner() / 2).attr('width', x.step()).attr('y', m.t).attr('height', H - m.t - m.b).attr('fill', 'transparent')
+    .on('pointerenter', (ev, r) => { tip.textContent = fmtDate(r.month) + ': ' + (r.v === null ? 'няма данни' : f1(r.v) + '%'); place(host, tip, x(r.month) + x.bandwidth() / 2, r.v === null ? y(1) : y(r.v)); })
+    .on('pointerleave', () => { tip.hidden = true; });
+}
+
+/* ---------- Медии ---------- */
+function renderMedia() {
+  const S = D.media_scores; const g = (id) => (S.find((r) => r.id === id) || {}).value;
+  setLede('m-lede', ['България е на ', B(g('rsf_rank'), 'red'), ' място от 180 държави по свобода на пресата (', B(f2(+g('rsf_score'))), ' точки). Общият риск за медийния плурализъм е ', B(g('mpm_total') + '%', 'yel'), '.']);
+  drawMpm();
+  $('owners').replaceChildren(...D.media_owners.map((r) => {
+    const tr = el('tr'); const o = el('td'); o.append(el('b', '', r.outlet), el('div', 'meta', r.kind)); tr.append(o);
+    [r.owner, r.data_year, r.note].forEach((t) => tr.append(el('td', '', t)));
+    const s = el('td'); s.append(link(r.url, 'Отвори')); tr.append(s); return tr;
+  }));
+  $('mfind').replaceChildren(...[...D.media_findings].sort((a, b) => String(b.date).localeCompare(String(a.date))).map((r) => {
+    const li = el('li', '', r.finding); const by = el('span', 'by'); by.append(link(r.url, r.by)); li.append(by); return li;
+  }));
+}
+function drawMpm() {
+  const host = $('mpm'); host.replaceChildren(); if (!host.clientWidth) return;
+  const rows = D.media_scores.filter((r) => r.group === 'mpm_area').map((r) => ({label: r.label, v: +r.value})).sort((a, b) => b.v - a.v);
+  const W = host.clientWidth, bh = 26, gap = 12, m = {t: 24, r: 44, b: 8, l: Math.min(190, W * 0.42)}, H = m.t + rows.length * (bh + gap) + m.b;
+  const x = d3.scaleLinear().domain([0, 100]).range([m.l, W - m.r]);
+  const svg = d3.select(host).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('height', H).attr('role', 'img').attr('aria-label', 'Риск за медийния плурализъм по области, %.');
+  [[0, 33, 'нисък', .04], [33, 66, 'среден', .10], [66, 100, 'висок', .10]].forEach(([a, b, n, o], i) => {
+    svg.append('rect').attr('x', x(a)).attr('y', m.t - 4).attr('width', x(b) - x(a)).attr('height', H - m.t).style('fill', i === 2 ? 'var(--bad)' : 'var(--ref)').style('opacity', o);
+    svg.append('text').attr('x', (x(a) + x(b)) / 2).attr('y', 12).attr('text-anchor', 'middle').style('fill', 'var(--muted)').style('font-size', '12px').text(n + ' риск');
+  });
+  const g = svg.selectAll('g.r').data(rows).join('g').attr('class', 'r').attr('transform', (r, i) => `translate(0,${m.t + i * (bh + gap)})`);
+  g.append('text').attr('x', m.l - 8).attr('y', bh / 2).attr('dy', '.35em').attr('text-anchor', 'end').style('fill', 'var(--fg)').style('font-size', '12px').text((r) => r.label);
+  g.append('rect').attr('x', x(0)).attr('height', bh).attr('rx', 3).attr('width', (r) => x(r.v) - x(0)).style('fill', (r) => r.v >= 66 ? 'var(--bad)' : 'var(--c0)');
+  g.append('text').attr('x', (r) => x(r.v) + 6).attr('y', bh / 2).attr('dy', '.35em').style('fill', 'var(--fg)').style('font-size', '12px').text((r) => r.v + '%');
+}
+
+/* ---------- Раздели ---------- */
+const tabs = [...document.querySelectorAll('.tab')], pages = [...document.querySelectorAll('.page')];
+function open(id) {
+  if (!pages.some((p) => p.id === id)) id = 'promises';
+  pages.forEach((p) => { p.hidden = p.id !== id; });
+  tabs.forEach((t) => t.setAttribute('aria-selected', t.dataset.tab === id ? 'true' : 'false'));
+  if (D.meta) { if (id === 'economy') { drawDeficit(); drawInflation(); } if (id === 'media') drawMpm(); }
+}
+tabs.forEach((t) => t.addEventListener('click', () => { history.replaceState(null, '', '#' + t.dataset.tab); open(t.dataset.tab); }));
+window.addEventListener('hashchange', () => open(location.hash.slice(1)));
+let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (D.meta) { drawDeficit(); drawInflation(); drawMpm(); } }, 150); });
+window.addEventListener('beforeprint', () => { pages.forEach((p) => { p.hidden = false; }); if (D.meta) { drawDeficit(); drawInflation(); drawMpm(); } });
+window.addEventListener('afterprint', () => open(location.hash.slice(1) || 'promises'));
+$('refresh').addEventListener('click', load);
+open(location.hash.slice(1) || 'promises');
+load();
+})();
+</script>
+</body>
+</html>

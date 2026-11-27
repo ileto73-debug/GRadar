@@ -1,0 +1,65 @@
+[
+ {
+  "date": "2026-06-03",
+  "event": "ЕК препоръчва процедура по свръхдефицит; финансовият министър съобщава за още 2,2 млрд. евро неразплатени задължения (АПИ и общини)",
+  "institution": "Европейска комисия / МФ",
+  "kind": "alarm",
+  "url": "https://www.bta.bg/en/news/1139551-european-commission-recommends-excessive-deficit-procedure-for-bulgaria"
+ },
+ {
+  "date": "2026-07-10",
+  "event": "Съветът на ЕС открива процедура по свръхдефицит срещу България; срок за корекция – 2029 г.",
+  "institution": "Съвет на ЕС",
+  "kind": "alarm",
+  "url": "https://bnrnews.bg/en/post/501388/council-of-the-europen-union-opens-excessive-deficit-procedure-for-bulgaria"
+ },
+ {
+  "date": "2026-07-15",
+  "event": "Бюджет 2026 е внесен с дефицит 5,7% от БВП (касова основа) – най-високият от 20 години",
+  "institution": "Министерски съвет",
+  "kind": "alarm",
+  "url": "https://www.capital.bg/politika_i_ikonomika/ikonomika/2026/07/15/4935480_bjudjet_2026_kakvo_triabva_da_znaem/"
+ },
+ {
+  "date": "2026-08-31",
+  "event": "Краен срок за изпълнение на мерките по последното плащане от Плана за възстановяване (1,677 млрд. евро)",
+  "institution": "Министерски съвет",
+  "kind": "deadline",
+  "url": "https://gov.bg/en/Press-center/News/Bulgaria-gets-approximately-EUR-1-billion-under-Recovery-and-Resilience-Plan"
+ },
+ {
+  "date": "2026-10-15",
+  "event": "Краен срок България да представи мерки за намаляване на дефицита",
+  "institution": "Съвет на ЕС",
+  "kind": "deadline",
+  "url": "https://www.brusselstimes.com/2224493/eu-launches-deficit-crackdown-on-bulgaria-over-forecast-breaches-through-2027"
+ },
+ {
+  "date": "2026-10-21",
+  "event": "Евростат изразява резерва към данните на България за 2025 г. (отчитане на разходите на АПИ)",
+  "institution": "Евростат",
+  "kind": "alarm",
+  "url": "https://www.euronews.com/2026/10/21/eurozone-government-debt-climbs-to-888-of-gdp-as-italy-closes-in-on-greece"
+ },
+ {
+  "date": "2026-11-02",
+  "event": "Писмо до ЕК: цел за дефицит ~5% (2026), 4,2% (2027), 3,5% (2028) – над 3% и през 2028 г.",
+  "institution": "Министерство на финансите",
+  "kind": "alarm",
+  "url": "https://www.devdiscourse.com/article/international/4002803-bulgaria-revises-2027-deficit-target-as-eu-pressure-mounts"
+ },
+ {
+  "date": "2026-11-13",
+  "event": "БВП расте с 2,5% на годишна база през III тримесечие – забавяне спрямо 2,8% през II тримесечие",
+  "institution": "НСИ",
+  "kind": "info",
+  "url": "https://www.mediapool.bg/biznes/rastat-na-ikonomikata-na-bulgaria-se-zabavya-do-25/"
+ },
+ {
+  "date": "2026-11-16",
+  "event": "Годишната инфлация (ИПЦ) се ускорява до 6,0% през октомври",
+  "institution": "НСИ",
+  "kind": "alarm",
+  "url": "https://news.bg/economics/nsi-izmeri-inflatsiya-ot-1-2-prez-oktomvri.html"
+ }
+]

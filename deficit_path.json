@@ -1,0 +1,50 @@
+[
+ {
+  "year": 2023,
+  "series": "Факт (Евростат)",
+  "value": 2.0,
+  "url": "https://www.economic.bg/en/a/view/eurostat-has-confirmed-bulgaria-has-exceeded-the-permitted-budget-deficit-for-2025"
+ },
+ {
+  "year": 2024,
+  "series": "Факт (Евростат)",
+  "value": 3.0,
+  "url": "https://www.bta.bg/en/news/1139551-european-commission-recommends-excessive-deficit-procedure-for-bulgaria"
+ },
+ {
+  "year": 2025,
+  "series": "Факт (Евростат)",
+  "value": 3.5,
+  "url": "https://data.consilium.europa.eu/doc/document/ST-10952-2026-INIT/en/pdf"
+ },
+ {
+  "year": 2026,
+  "series": "Прогноза на ЕК (пролет 2026)",
+  "value": 4.1,
+  "url": "https://www.bta.bg/en/news/1139551-european-commission-recommends-excessive-deficit-procedure-for-bulgaria"
+ },
+ {
+  "year": 2027,
+  "series": "Прогноза на ЕК (пролет 2026)",
+  "value": 4.3,
+  "url": "https://www.bta.bg/en/news/1139551-european-commission-recommends-excessive-deficit-procedure-for-bulgaria"
+ },
+ {
+  "year": 2026,
+  "series": "Цел на правителството (2.11.2026)",
+  "value": 5.0,
+  "url": "https://www.devdiscourse.com/article/international/4002803-bulgaria-revises-2027-deficit-target-as-eu-pressure-mounts"
+ },
+ {
+  "year": 2027,
+  "series": "Цел на правителството (2.11.2026)",
+  "value": 4.2,
+  "url": "https://www.devdiscourse.com/article/international/4002803-bulgaria-revises-2027-deficit-target-as-eu-pressure-mounts"
+ },
+ {
+  "year": 2028,
+  "series": "Цел на правителството (2.11.2026)",
+  "value": 3.5,
+  "url": "https://www.devdiscourse.com/article/international/4002803-bulgaria-revises-2027-deficit-target-as-eu-pressure-mounts"
+ }
+]

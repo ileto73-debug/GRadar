@@ -1,0 +1,44 @@
+[
+ {
+  "id": "m1",
+  "date": "2026-03-03",
+  "by": "Съвет на Европа (мисия за свобода на медиите)",
+  "finding": "Секторът се характеризира с политическо влияние, непрозрачна собственост и тежестта на малък рекламен пазар",
+  "url": "https://sofiaglobe.com/2026/03/03/coe-bulgaria-remains-challenging-environment-for-independent-journalism/"
+ },
+ {
+  "id": "m2",
+  "date": "2026-04-30",
+  "by": "Репортери без граници",
+  "finding": "Свободата на пресата е описана като крехка и нестабилна; България пада на 71-во място",
+  "url": "https://www.economic.bg/en/a/view/bulgaria-has-fallen-to-71st-place-in-press-freedom-rankings"
+ },
+ {
+  "id": "m3",
+  "date": "2026-06-16",
+  "by": "Reuters Institute (Digital News Report 2026)",
+  "finding": "Малък напредък в прилагането на Европейския акт за свободата на медиите (EMFA)",
+  "url": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2026/bulgaria"
+ },
+ {
+  "id": "m4",
+  "date": "2026-07-15",
+  "by": "Европейска комисия",
+  "finding": "Официално уведомление за неприета навреме директива за защита на журналисти от SLAPP дела",
+  "url": "https://www.novinite.com/view_news.php?id=239638"
+ },
+ {
+  "id": "m5",
+  "date": "2026-06",
+  "by": "Съвет за електронни медии (наблюдение март–май 2026)",
+  "finding": "Само едно специализирано предаване за разследваща журналистика в наблюдаваните национални програми",
+  "url": "https://cem.bg/files/1783686359_doklad_razsledvashta_zhurnalistika.pdf"
+ },
+ {
+  "id": "m6",
+  "date": "2025-12-17",
+  "by": "„Капитал“ (данни за рекламния пазар)",
+  "finding": "Над 90% от брутните телевизионни рекламни бюджети отиват при групите на bTV и NOVA",
+  "url": "https://www.capital.bg/biznes/media_i_reklama/2025/12/17/4840221_razpredelenie_na_televizionniia_pazar_v_bulgariia/"
+ }
+]
