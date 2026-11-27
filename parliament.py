@@ -27,10 +27,20 @@ DETAIL_LIMIT = 60   # най-много заявки за подробности
 HEADERS = {"User-Agent": "darzhaven-radar/1.0 (+github.com)", "Accept": "application/json"}
 
 
-def get(path):
-    r = requests.get(API + path, headers=HEADERS, timeout=60)
-    r.raise_for_status()
-    return r.json()
+def get(path, tries=4):
+    """Заявка с повторни опити: parliament.bg понякога не отговаря от първия път."""
+    last = None
+    for i in range(tries):
+        try:
+            r = requests.get(API + path, headers=HEADERS, timeout=(30, 90))
+            r.raise_for_status()
+            return r.json()
+        except (requests.ConnectionError, requests.Timeout, requests.HTTPError) as e:
+            last = e
+            if isinstance(e, requests.HTTPError) and e.response is not None and e.response.status_code < 500:
+                break
+            time.sleep(10 * (i + 1))
+    raise last
 
 
 def as_list(js):
