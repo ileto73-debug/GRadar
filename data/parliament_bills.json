@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-27T09:01:05+00:00",
+ "checked": "2026-11-27T09:15:56+00:00",
  "source": "https://www.parliament.bg/api/v1/",
  "bills": [
   {
@@ -13,6 +13,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-653-16-11.pdf",
    "url": "https://www.parliament.bg/bg/bills/ID/167668"
   },
   {
@@ -33,6 +34,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-76.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167666"
   },
   {
@@ -48,6 +50,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-75.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167665"
   },
   {
@@ -63,6 +66,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-77.odt",
    "url": "https://www.parliament.bg/bg/bills/ID/167667"
   },
   {
@@ -76,6 +80,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-653-11-16.pdf",
    "url": "https://www.parliament.bg/bg/bills/ID/167664"
   },
   {
@@ -105,6 +110,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-72.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167649"
   },
   {
@@ -119,6 +125,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-73.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167650"
   },
   {
@@ -135,6 +142,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-74.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167651"
   },
   {
@@ -149,6 +157,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-68.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167642"
   },
   {
@@ -163,6 +172,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-70.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167644"
   },
   {
@@ -199,6 +209,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-71.docx",
    "url": "https://www.parliament.bg/bg/bills/ID/167645"
   },
   {
@@ -213,6 +224,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-02-22.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167647"
   },
   {
@@ -230,6 +242,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-69.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167643"
   },
   {
@@ -259,6 +272,7 @@
     "АТАНАС ПЕТРОВ АТАНАСОВ"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167639"
   },
   {
@@ -278,6 +292,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-66.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167636"
   },
   {
@@ -296,6 +311,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-67.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167637"
   },
   {
@@ -319,6 +335,7 @@
     "ГЕОРГИ АЛЕКСАНДРОВ ЧАКЪРОВ"
    ],
    "withdrawn": true,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167632"
   },
   {
@@ -347,6 +364,7 @@
     "АЛЕКСАНДРА ПАВЛОВА АНГЕЛАКОВА"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167635"
   },
   {
@@ -372,6 +390,7 @@
     "НАДЕЖДА БОРИСОВА КОЛЕВА-СТОЙЧЕВА"
    ],
    "withdrawn": true,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167634"
   },
   {
@@ -390,6 +409,7 @@
     "ДИМИТЪР ТРИФОНОВ ЗДРАВКОВ"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167631"
   },
   {
@@ -416,6 +436,7 @@
     "ЕМИЛ ДЕНКОВ ДЕНКОВ"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167633"
   },
   {
@@ -443,6 +464,7 @@
     "МАРИЯ ТОДОРОВА ТОДОРОВА"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167630"
   },
   {
@@ -457,6 +479,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-59.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167623"
   },
   {
@@ -472,6 +495,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-63.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167627"
   },
   {
@@ -487,6 +511,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-64.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167628"
   },
   {
@@ -502,6 +527,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-65.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167629"
   },
   {
@@ -517,6 +543,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-60.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167624"
   },
   {
@@ -533,6 +560,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-61.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167625"
   },
   {
@@ -547,6 +575,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-62.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167626"
   },
   {
@@ -563,6 +592,7 @@
     "СТЕЛА ДИМИТРОВА НИКОЛОВА"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167622"
   },
   {
@@ -587,6 +617,7 @@
     "ФАТМЕ ХАСАН РАМАДАН"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167621"
   },
   {
@@ -610,6 +641,7 @@
     "ДЕСИСЛАВА НИКОЛАЕВА КОСТОВА"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167620"
   },
   {
@@ -631,6 +663,7 @@
     "ЕЛИСАВЕТА ДИМИТРОВА БЕЛОБРАДОВА"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167619"
   },
   {
@@ -646,6 +679,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-55.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167610"
   },
   {
@@ -661,6 +695,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-56.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167611"
   },
   {
@@ -679,6 +714,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-57.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167612"
   },
   {
@@ -698,6 +734,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-58.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167613"
   },
   {
@@ -722,6 +759,7 @@
     "ДЖИПО НИКОЛОВ ДЖИПОВ"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167609"
   },
   {
@@ -739,6 +777,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-54.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167608"
   },
   {
@@ -754,6 +793,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-50.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167603"
   },
   {
@@ -771,6 +811,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-02-21.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167607"
   },
   {
@@ -785,6 +826,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-52.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167605"
   },
   {
@@ -798,6 +840,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-53.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167606"
   },
   {
@@ -811,6 +854,7 @@
    "session": null,
    "submitters": [],
    "withdrawn": false,
+   "pdf": "https://www.parliament.bg/52-602-01-51.rtf",
    "url": "https://www.parliament.bg/bg/bills/ID/167604"
   },
   {
@@ -841,6 +885,7 @@
     "МАРТИН МАРИОВ ЖЛЯБИНКОВ"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167596"
   },
   {
@@ -888,6 +933,7 @@
     "АЛЕКСАНДЪР ДИМИТРОВ СИМИДЧИЕВ"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167594"
   },
   {
@@ -909,6 +955,7 @@
     "АТАНАС ПЕТРОВ АТАНАСОВ"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167592"
   },
   {
@@ -938,6 +985,7 @@
     "АЛЕКСАНДРА КРАСИМИРОВА СТЕРКОВА"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167595"
   },
   {
@@ -958,6 +1006,7 @@
     "ЕЛИСАВЕТА ДИМИТРОВА БЕЛОБРАДОВА"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167593"
   },
   {
@@ -979,6 +1028,7 @@
     "ТЕМЕНУЖКА ПЕТРОВА ПЕТКОВА"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167589"
   },
   {
@@ -1004,6 +1054,7 @@
     "СВИЛЕН ПЕТРОВ ТРИФОНОВ"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167586"
   },
   {
@@ -1033,6 +1084,7 @@
     "МАРИЯ ТОДОРОВА ТОДОРОВА"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167585"
   },
   {
@@ -1056,6 +1108,7 @@
     "НАДЕЖДА ГЕОРГИЕВА ЙОРДАНОВА"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167583"
   },
   {
@@ -1078,6 +1131,7 @@
     "АНГЕЛ ВАСИЛЕВ ЯНЧЕВ"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167581"
   },
   {
@@ -1102,6 +1156,7 @@
     "СВИЛЕН ПЕТРОВ ТРИФОНОВ"
    ],
    "withdrawn": true,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167582"
   },
   {
@@ -1140,6 +1195,7 @@
     "НИХАЛ ФЕХМИЕВА ЮЗЕРГАН"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167580"
   },
   {
@@ -1162,7 +1218,84 @@
     "ЧИЛО ЛЮДМИЛОВ ПОПОВ"
    ],
    "withdrawn": false,
+   "pdf": null,
    "url": "https://www.parliament.bg/bg/bills/ID/167577"
   }
- ]
+ ],
+ "debug_sample": {
+  "bill_id": 167668,
+  "keys": [
+   "A_ns_folder",
+   "L_ActL_final",
+   "L_ActL_title",
+   "L_Act_date",
+   "L_Act_date2",
+   "L_Act_dv_ID",
+   "L_Act_dv_iss",
+   "L_Act_dv_year",
+   "L_Act_id",
+   "L_Act_new_id",
+   "L_Act_sign",
+   "L_Act_veto",
+   "L_Act_veto_date",
+   "L_SesL_value",
+   "L_act_proposal_date",
+   "L_act_proposal_date2",
+   "activity",
+   "dist_list",
+   "file_list",
+   "imp_list",
+   "imp_list_min",
+   "order",
+   "proposal_12_list",
+   "stan_list",
+   "stan_list2",
+   "stan_list2_1",
+   "stan_list_veto",
+   "standp_list",
+   "static_archive",
+   "static_file",
+   "static_file_rtf",
+   "steno_com",
+   "steno_hall",
+   "sync_ID",
+   "trans_label",
+   "trans_list",
+   "union_label",
+   "union_list",
+   "withdrawn"
+  ],
+  "imp_list": [],
+  "file_list": [
+   {
+    "FILENAME": "52-653-16-11.pdf",
+    "ID": 876464
+   }
+  ],
+  "other": {
+   "L_Act_id": 167668,
+   "L_Act_sign": "52-653-16-11",
+   "L_Act_new_id": null,
+   "L_Act_date": "2026-11-25 00:00:00",
+   "L_act_proposal_date": "2026-12-02",
+   "L_act_proposal_date2": "0000-00-00",
+   "L_Act_veto_date": null,
+   "L_Act_veto": null,
+   "sync_ID": 46066,
+   "L_Act_dv_ID": -1,
+   "L_Act_date2": "0001-01-01 00:00:00",
+   "L_Act_dv_iss": "",
+   "L_Act_dv_year": null,
+   "L_ActL_title": "Общ законопроект за изменение и допълнение на Закона за водите",
+   "L_ActL_final": "",
+   "A_ns_folder": "52",
+   "L_SesL_value": "Втора сесия",
+   "union_label": "Обединен законопроект, изготвен по реда на ПОДНС, на основата на приетите на първо гласуване:",
+   "withdrawn": false,
+   "trans_label": "",
+   "static_file": "",
+   "static_file_rtf": "",
+   "static_archive": ""
+  }
+ }
 }
