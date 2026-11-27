@@ -10,7 +10,8 @@
   "rule": "max",
   "limit_label": "Таван по Пакта за стабилност и растеж",
   "source": "Евростат (автоматично)",
-  "url": "https://ec.europa.eu/eurostat/databrowser/view/gov_10dd_edpt1/default/table"
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/gov_10dd_edpt1/default/table",
+  "period_key": "2025"
  },
  {
   "id": "deficit_2026",
@@ -36,20 +37,22 @@
   "rule": "max",
   "limit_label": "Таван по Договора за ЕС",
   "source": "Евростат (автоматично)",
-  "url": "https://ec.europa.eu/eurostat/databrowser/view/gov_10dd_edpt1/default/table"
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/gov_10dd_edpt1/default/table",
+  "period_key": "2025"
  },
  {
   "id": "hicp",
   "indicator": "Инфлация (ХИПЦ)",
-  "value": 3.5,
+  "value": 5.9,
   "unit": "% на год. база",
-  "period": "дек 2025, Евростат",
+  "period": "октомври 2026",
   "limit": 2.0,
   "warn": null,
   "rule": "max",
   "limit_label": "Цел на ЕЦБ за еврозоната",
-  "source": "Евростат (автоматично)",
-  "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/default/table"
+  "source": "НСИ (чрез Agrozona.bg)",
+  "url": "https://agrozona.bg/nsi-inflatsiyata-v-balgariya-dostigna-6-na-godishna-baza-prez-oktomvri/",
+  "period_key": "2026-10"
  },
  {
   "id": "gdp",
@@ -62,7 +65,8 @@
   "rule": "min",
   "limit_label": "Под 0 = спад на икономиката",
   "source": "Евростат (автоматично)",
-  "url": "https://ec.europa.eu/eurostat/databrowser/view/namq_10_gdp/default/table"
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/namq_10_gdp/default/table",
+  "period_key": "2026-Q3"
  },
  {
   "id": "unemployment",
@@ -75,7 +79,8 @@
   "rule": "max",
   "limit_label": "Средно за ЕС (юли 2026)",
   "source": "Евростат (автоматично)",
-  "url": "https://ec.europa.eu/eurostat/databrowser/view/une_rt_m/default/table"
+  "url": "https://ec.europa.eu/eurostat/databrowser/view/une_rt_m/default/table",
+  "period_key": "2026-09"
  },
  {
   "id": "defence",

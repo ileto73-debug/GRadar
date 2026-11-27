@@ -115,9 +115,10 @@ def main():
                 old = {}
 
         details = 0
+        debug_sample = None
         for b in recent:
             prev = old.get(b["id"])
-            if prev and prev.get("submitters") is not None:
+            if prev and prev.get("submitters"):
                 b["submitters"] = prev["submitters"]
                 b["withdrawn"] = prev.get("withdrawn", False)
                 b["pdf"] = prev.get("pdf")
@@ -127,11 +128,22 @@ def main():
                     d = get(f"bill/{b['id']}")
                     d = d if isinstance(d, dict) else {}
                     b["submitters"] = [n for n in (person_name(p) for p in d.get("imp_list") or []) if n]
+                    if not b["submitters"] and debug_sample is None:
+                        debug_sample = {"bill_id": b["id"], "keys": sorted(d.keys()),
+                                        "imp_list": (d.get("imp_list") or [])[:2], "file_list": (d.get("file_list") or [])[:1],
+                                        "other": {k: v for k, v in d.items() if not isinstance(v, (list, dict))}}
                     b["withdrawn"] = bool(d.get("withdrawn"))
                     files = d.get("file_list") or []
-                    if files and files[0].get("FILEPATH"):
-                        fp = str(files[0]["FILEPATH"])
-                        b["pdf"] = fp if fp.startswith("http") else SITE + "/" + fp.lstrip("/")
+                    if files:
+                        f0 = files[0]
+                        fp = str(f0.get("FILEPATH") or "")
+                        fn = str(f0.get("FILENAME") or "")
+                        if fp.startswith("http"):
+                            b["pdf"] = fp
+                        elif fp or fn:
+                            b["pdf"] = SITE + "/" + "/".join(x.strip("/") for x in (fp, fn) if x)
+                    if not b.get("pdf") and b.get("sign") and b.get("session"):
+                        b["pdf"] = f"{SITE}/bills/{b['session']}/{b['sign']}.pdf"
                     for dl in d.get("dist_list") or []:
                         cn = dl.get("A_ns_CL_value")
                         if cn and cn not in b["committees"]:
@@ -145,7 +157,10 @@ def main():
         if not recent:
             raise ValueError("няма законопроекти за последните %d дни – вероятно форматът на API е променен" % KEEP_DAYS)
         new_ids = [b["id"] for b in recent if b["id"] not in old]
-        out_path.write_text(json.dumps({"checked": now, "source": API, "bills": recent}, ensure_ascii=False, indent=1), encoding="utf-8")
+        out = {"checked": now, "source": API, "bills": recent}
+        if debug_sample is not None:
+            out["debug_sample"] = debug_sample  # за диагностика на липсващи вносители
+        out_path.write_text(json.dumps(out, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
         log.insert(0, f"parliament.bg: {len(recent)} законопроекта за последните {KEEP_DAYS} дни, нови: {len(new_ids)}")
     except Exception as ex:
         log.insert(0, f"parliament.bg: грешка ({type(ex).__name__}: {str(ex)[:120]}); старият списък е запазен")

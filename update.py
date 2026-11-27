@@ -26,6 +26,13 @@ SERIES = {
     "hicp": {
         "dataset": "prc_hicp_manr",
         "params": {"geo": "BG", "coicop": "CP00", "unit": "RCH_A"},
+        # От 2026 г. Евростат минава към класификацията COICOP 2018; старата серия спира през дек. 2025.
+        # Пробват се всички варианти и се взема най-новият.
+        "alternatives": [
+            ("prc_hicp_manr", {"geo": "BG", "coicop18": "TOTAL", "unit": "RCH_A"}),
+            ("prc_hicp_manr", {"geo": "BG", "coicop": "TOTAL", "unit": "RCH_A"}),
+            ("prc_hicp_minr", {"geo": "BG", "coicop18": "TOTAL", "unit": "RCH_A"}),
+        ],
         "freq": "M",
         "url": "https://ec.europa.eu/eurostat/databrowser/view/prc_hicp_manr/default/table",
     },
@@ -109,10 +116,22 @@ def main():
 
     for iid, cfg in SERIES.items():
         try:
-            series = fetch_series(cfg["dataset"], cfg["params"], last=12 if cfg["freq"] != "A" else 3)
+            last = 12 if cfg["freq"] != "A" else 3
+            series, errors = [], []
+            for ds, params in [(cfg["dataset"], cfg["params"])] + cfg.get("alternatives", []):
+                try:
+                    s_ = fetch_series(ds, params, last=last)
+                    if s_ and (not series or s_[-1][0] > series[-1][0]):
+                        series, used = s_, ds
+                except Exception as e2:
+                    errors.append(f"{ds}: {type(e2).__name__}")
             if not series:
-                raise ValueError("празен отговор")
+                raise ValueError("празен отговор " + "; ".join(errors))
             period, value = series[-1]
+            row0 = by_id.get(iid) or {}
+            if row0.get("period_key") and period < row0["period_key"]:
+                log.append(f"{iid}: Евростат дава по-стари данни ({period}) от текущите ({row0['period_key']}) – запазени са текущите")
+                continue
             if cfg.get("negate"):
                 value = -value
             value = round(value, 2)
@@ -125,6 +144,7 @@ def main():
                 log.append(f"{iid}: {row.get('value')} ({row.get('period')}) -> {value} ({new_period})")
                 row["value"] = value
                 row["period"] = new_period
+                row["period_key"] = period
                 row["source"] = "Евростат (автоматично)"
                 row["url"] = cfg["url"]
                 changed = True
